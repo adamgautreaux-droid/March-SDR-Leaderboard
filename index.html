@@ -60,6 +60,33 @@ h1 span{color:var(--gold);}
 .fl{font-family:'Inconsolata',monospace;font-size:11px;color:var(--muted);letter-spacing:.15em;}
 .fr{font-family:'Oswald',sans-serif;font-size:15px;color:var(--muted);letter-spacing:.1em;}
 @media(max-width:600px){.cname{width:110px;}.cval{min-width:80px;}}
+.htw-hero{background:var(--text);color:#fff;padding:28px 24px;margin-bottom:16px;}
+.htw-hero-eye{font-family:'Inconsolata',monospace;font-size:11px;letter-spacing:.3em;color:rgba(255,255,255,.4);margin-bottom:6px;}
+.htw-hero-title{font-family:'Oswald',sans-serif;font-size:clamp(28px,6vw,48px);font-weight:700;line-height:1.1;margin-bottom:10px;}
+.htw-hero-title span{color:var(--gold);}
+.htw-hero-sub{font-family:'Barlow',sans-serif;font-size:15px;color:rgba(255,255,255,.65);line-height:1.6;max-width:560px;}
+.htw-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;}
+@media(max-width:640px){.htw-cards{grid-template-columns:1fr;}}
+.htw-card{padding:20px;border:2px solid var(--faint);}
+.htw-card-weight{font-family:'Oswald',sans-serif;font-size:42px;font-weight:700;line-height:1;}
+.htw-card-label{font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:.25em;color:var(--muted);margin:4px 0 10px;}
+.htw-card-tip{font-family:'Barlow',sans-serif;font-size:13px;color:var(--text);line-height:1.55;}
+.htw-card-tip strong{display:block;margin-bottom:3px;}
+.htw-rule{background:#f0ece3;border:1px solid var(--border);padding:20px 24px;margin-bottom:8px;}
+.htw-rule-title{font-family:'Oswald',sans-serif;font-size:18px;font-weight:600;margin-bottom:8px;}
+.htw-rule-body{font-family:'Barlow',sans-serif;font-size:14px;color:#444;line-height:1.65;}
+.htw-rule-body strong{color:var(--text);}
+.htw-example{background:var(--text);color:#fff;padding:20px 24px;margin-bottom:16px;}
+.htw-example-title{font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:.25em;color:rgba(255,255,255,.4);margin-bottom:12px;}
+.htw-ex-row{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);padding:10px 0;flex-wrap:wrap;gap:6px;}
+.htw-ex-row:last-child{border-bottom:none;}
+.htw-ex-name{font-family:'Oswald',sans-serif;font-size:16px;font-weight:500;}
+.htw-ex-stats{font-family:'Inconsolata',monospace;font-size:11px;color:rgba(255,255,255,.5);}
+.htw-ex-score{font-family:'Oswald',sans-serif;font-size:22px;font-weight:700;color:var(--gold);}
+.htw-cta{border:3px solid var(--text);padding:24px;text-align:center;}
+.htw-cta-title{font-family:'Oswald',sans-serif;font-size:clamp(20px,4vw,30px);font-weight:700;margin-bottom:8px;}
+.htw-cta-title span{color:var(--gold);}
+.htw-cta-body{font-family:'Barlow',sans-serif;font-size:14px;color:var(--muted);line-height:1.6;}
 </style>
 </head>
 <body>
@@ -79,11 +106,13 @@ h1 span{color:var(--gold);}
   <button class="tab" onclick="show('revenue',this)">💰 Revenue</button>
   <button class="tab" onclick="show('closes',this)">🤝 Closes</button>
   <button class="tab" onclick="show('sets',this)">📅 Sets</button>
+  <button class="tab" onclick="show('howtowin',this)">🔥 How to Win</button>
 </div>
 <div id="board" class="sec on"></div>
 <div id="revenue" class="sec"></div>
 <div id="closes" class="sec"></div>
 <div id="sets" class="sec"></div>
+<div id="howtowin" class="sec"></div>
 <div class="footer"><div class="fl" id="footerL"></div><div class="fr">WHO'S NEXT?</div></div>
 </div>
 <script type="text/javascript">
@@ -147,10 +176,13 @@ var parts=DATA.month.split(' ');
 $('hMonth').innerHTML=parts[0]+' <span>'+parts[1]+'</span>';
 $('hMeta').innerHTML=DATA.updatedAt.toUpperCase()+'<br>WORK DAY '+DATA.workDay+' OF '+DATA.workDaysTotal;
 var mc=$('metricCards');
+var activeClosers=scored.filter(function(r){return r.rev>0;}).length;
+var avgRevPerRep=activeClosers>0?Math.round(totRev/activeClosers):0;
 var mDefs=[
   ['&#x1F4B0;','REVENUE MTD',fmt$(totRev),'linear-gradient(135deg,#7a5808,#c8960a)'],
   ['&#x1F91D;','CLOSES MTD',String(totCls),'linear-gradient(135deg,#8a2010,#c0392b)'],
   ['&#x1F4C5;','SETS MTD',String(totSet),'linear-gradient(135deg,#0a2a5a,#2980b9)'],
+  ['&#x1F3AF;','AVG REV / REP',fmt$(avgRevPerRep),'linear-gradient(135deg,#2d0a5a,#7a30b9)']
 ];
 for(var i=0;i<mDefs.length;i++){
   var c=el('div','mc');
@@ -218,6 +250,70 @@ buildChart('revenue',rR,'background:linear-gradient(90deg,#7a5808,#c8960a)',func
 buildChart('closes',cR,'background:linear-gradient(90deg,#8a2010,#c0392b)',function(r){return r.cls+' closes';},function(r,i){return i===0?'&#9650; LEADER':'&#9650; '+(byCls[0].cls-r.cls)+' to #1';});
 buildChart('sets',sR,'background:linear-gradient(90deg,#0a2a5a,#2980b9)',function(r){return r.sets+' sets';},function(r,i){return i===0?'&#9650; LEADER':'&#9650; '+(bySet[0].sets-r.sets)+' to #1';});
 $('footerL').textContent='UPDATED DAILY - SDR TEAM - '+DATA.month.toUpperCase();
+
+// ── HOW TO WIN ──
+$('howtowin').innerHTML=
+'<div class="htw-hero">'
+  +'<div class="htw-hero-eye">THE PLAYBOOK</div>'
+  +'<div class="htw-hero-title">YOU DON\'T CLIMB THE BOARD<br>BY <span>ACCIDENT.</span></div>'
+  +'<div class="htw-hero-sub">Every number on this leaderboard is earned. Here\'s exactly how your score is built — and exactly how to blow past the person above you.</div>'
++'</div>'
+
++'<div class="htw-cards">'
+  +'<div class="htw-card" style="border-color:var(--gold)">'
+    +'<div class="htw-card-weight" style="color:var(--gold)">50</div>'
+    +'<div class="htw-card-label">POINTS — REVENUE</div>'
+    +'<div class="htw-card-tip"><strong>💰 The biggest lever you have.</strong>Revenue is king. One $10K close does more for your rank than a perfect week of sets. If you\'re not closing, you\'re handing the board to someone else. Find the money. Close it.</div>'
+  +'</div>'
+  +'<div class="htw-card" style="border-color:var(--red)">'
+    +'<div class="htw-card-weight" style="color:var(--red)">30</div>'
+    +'<div class="htw-card-label">POINTS — CLOSES</div>'
+    +'<div class="htw-card-tip"><strong>🤝 Volume wins over time.</strong>Don\'t sleep on closes just because the deal is smaller. Every close stacks your score and builds momentum. Two closes beats one close — every time. Stack them up.</div>'
+  +'</div>'
+  +'<div class="htw-card" style="border-color:var(--blue)">'
+    +'<div class="htw-card-weight" style="color:var(--blue)">20</div>'
+    +'<div class="htw-card-label">POINTS — SETS</div>'
+    +'<div class="htw-card-tip"><strong>📅 Your engine. Don\'t let it stall.</strong>Sets are your daily proof of work. They keep you on the board, feed the pipeline, and separate the reps who show up from the ones who disappear. Post every single one.</div>'
+  +'</div>'
++'</div>'
+
++'<div class="htw-rule">'
+  +'<div class="htw-rule-title">📐 How the Score Actually Works</div>'
+  +'<div class="htw-rule-body">'
+    +'Your score is <strong>relative to the top performer</strong> in each category — not a fixed number. '
+    +'If the top revenue earner has $40K and you have $20K, you score <strong>25 out of 50</strong> on revenue. '
+    +'Same math applies to closes and sets.<br><br>'
+    +'This means <strong>the board shifts every single day.</strong> '
+    +'Someone closes a deal tonight and they jump you. You post sets all week and you creep up. '
+    +'Nothing is locked in until the month ends.'
+  +'</div>'
++'</div>'
+
++'<div class="htw-example">'
+  +'<div class="htw-example-title">🔬 SCORE BREAKDOWN — LIVE EXAMPLES (TODAY\'S DATA)</div>'
+  +scored.slice(0,4).map(function(r){
+    return '<div class="htw-ex-row">'
+      +'<div class="htw-ex-name">'+r.name+'</div>'
+      +'<div class="htw-ex-stats">'+fmt$(r.rev)+' rev &nbsp;·&nbsp; '+r.cls+' cls &nbsp;·&nbsp; '+r.sets+' sets</div>'
+      +'<div class="htw-ex-score">'+r.score+' pts</div>'
+    +'</div>';
+  }).join('')
++'</div>'
+
++'<div class="htw-rule">'
+  +'<div class="htw-rule-title">⚡ The Fastest Ways to Move Up Right Now</div>'
+  +'<div class="htw-rule-body">'
+    +'<strong>1. Close something today.</strong> Even a small deal moves your revenue score 50 points of weight. Nothing else comes close.<br><br>'
+    +'<strong>2. Post every set, every day.</strong> Sets are 20% of your score and easy to stack. Reps who go quiet on sets fall off the board fast.<br><br>'
+    +'<strong>3. Know your gap.</strong> Look at the Overall Rank tab. It shows you exactly how many points and how much revenue separates you from the person above you. That\'s your target.<br><br>'
+    +'<strong>4. Rev/Close matters.</strong> A rep with 2 big closes can outscore a rep with 5 small ones. Quality and quantity both count.'
+  +'</div>'
++'</div>'
+
++'<div class="htw-cta">'
+  +'<div class="htw-cta-title">THE BOARD RESETS IN <span>'+(DATA.workDaysTotal-DATA.workDay)+' WORK DAYS.</span></div>'
+  +'<div class="htw-cta-body">Every single person on this team has time to move. The reps who finish strong aren\'t the ones who waited — they\'re the ones who decided. What are you doing today?</div>'
++'</div>';
 </script>
 </body>
 </html>
