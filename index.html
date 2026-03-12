@@ -30,12 +30,11 @@ h1 span{color:var(--gold);}
 .ps-lbl{font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:.15em;color:var(--muted);}
 .pbar-bg{height:6px;background:var(--faint);border-radius:2px;}
 .pbar-fg{height:100%;border-radius:2px;background:linear-gradient(90deg,#7a5808,var(--gold));}
-.tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:20px;flex-wrap:wrap;}
+.tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:20px;}
 .tab{cursor:pointer;background:transparent;border:none;border-bottom:3px solid transparent;font-family:'Inconsolata',monospace;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:10px 16px;color:var(--muted);transition:all .15s;margin-bottom:-1px;}
 .tab:hover,.tab.on{color:var(--text);}.tab.on{border-bottom-color:var(--gold);}
 .sec{display:none;}.sec.on{display:block;}
 @keyframes ri{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-@keyframes si{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
 .rr{border-bottom:1px solid var(--faint);padding:14px 0;display:grid;grid-template-columns:44px 1fr 60px;gap:0 12px;animation:ri .35s ease forwards;opacity:0;}
 .rrank{font-family:'Oswald',sans-serif;font-size:26px;font-weight:700;line-height:1;padding-top:4px;}
 .rname{font-family:'Oswald',sans-serif;font-size:22px;font-weight:600;margin-bottom:6px;line-height:1;}
@@ -48,18 +47,50 @@ h1 span{color:var(--gold);}
 .rgap{font-family:'Inconsolata',monospace;font-size:11px;margin-top:5px;}
 .rscore{font-family:'Oswald',sans-serif;font-size:32px;font-weight:700;line-height:1;text-align:right;}
 .rslbl{font-family:'Inconsolata',monospace;font-size:9px;color:var(--muted);letter-spacing:.15em;margin-top:3px;text-align:right;}
-.clbl{font-family:'Inconsolata',monospace;font-size:11px;color:var(--muted);letter-spacing:.2em;margin-bottom:16px;}
-.cr{display:flex;align-items:center;gap:12px;margin-bottom:10px;animation:si .35s ease forwards;opacity:0;}
-.crank{font-family:'Oswald',sans-serif;font-size:18px;font-weight:700;width:28px;text-align:right;flex-shrink:0;}
-.cname{font-family:'Oswald',sans-serif;font-size:17px;font-weight:500;width:170px;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.ctrack{height:22px;background:var(--faint);border-radius:2px;flex:1;overflow:hidden;}
-.cfill{height:100%;border-radius:2px;}
-.cval{font-family:'Oswald',sans-serif;font-size:18px;font-weight:600;text-align:right;min-width:120px;flex-shrink:0;}
-.cgap{font-family:'Inconsolata',monospace;font-size:11px;text-align:right;display:block;}
 .footer{border-top:1px solid var(--border);margin-top:36px;padding-top:14px;display:flex;justify-content:space-between;align-items:center;}
 .fl{font-family:'Inconsolata',monospace;font-size:11px;color:var(--muted);letter-spacing:.15em;}
 .fr{font-family:'Oswald',sans-serif;font-size:15px;color:var(--muted);letter-spacing:.1em;}
-@media(max-width:600px){.cname{width:110px;}.cval{min-width:80px;}}
+
+/* TEAMS */
+.ts-header{display:grid;grid-template-columns:36px 1fr 110px 80px 80px 90px;gap:0 8px;padding:9px 14px;background:var(--text);font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:.15em;color:rgba(255,255,255,.45);}
+.ts-row{display:grid;grid-template-columns:36px 1fr 110px 80px 80px 90px;gap:0 8px;padding:12px 14px;border-bottom:1px solid var(--faint);animation:ri .35s ease forwards;opacity:0;align-items:center;}
+.ts-rank{font-family:'Oswald',sans-serif;font-size:22px;font-weight:700;}
+.ts-name{font-family:'Oswald',sans-serif;font-size:17px;font-weight:600;}
+.ts-reps{font-family:'Inconsolata',monospace;font-size:10px;color:var(--muted);margin-top:2px;}
+.ts-val{font-family:'Oswald',sans-serif;font-size:15px;font-weight:600;text-align:right;}
+.ts-score{font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;text-align:right;}
+.team-cards{display:grid;gap:14px;margin-top:24px;}
+.tc{border:1px solid var(--border);overflow:hidden;animation:ri .4s ease forwards;opacity:0;}
+.tc-head{background:var(--text);color:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;}
+.tc-head-left{}
+.tc-title{font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;}
+.tc-badge{font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:.2em;color:rgba(255,255,255,.4);margin-top:3px;}
+.tc-totals{display:flex;gap:20px;flex-wrap:wrap;}
+.tc-tot{text-align:right;}
+.tc-tot-val{font-family:'Oswald',sans-serif;font-size:18px;font-weight:700;color:var(--gold);display:block;}
+.tc-tot-lbl{font-family:'Inconsolata',monospace;font-size:9px;letter-spacing:.12em;color:rgba(255,255,255,.35);}
+.tc-avgs{display:grid;grid-template-columns:repeat(3,1fr);background:#f0ece3;border-bottom:1px solid var(--border);}
+.tc-avg{padding:10px 14px;text-align:center;border-right:1px solid var(--border);}
+.tc-avg:last-child{border-right:none;}
+.tc-avg-val{font-family:'Oswald',sans-serif;font-size:17px;font-weight:700;}
+.tc-avg-lbl{font-family:'Inconsolata',monospace;font-size:9px;letter-spacing:.12em;color:var(--muted);margin-top:2px;}
+.tc-member{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--faint);}
+.tc-member:last-child{border-bottom:none;}
+.tc-m-name{font-family:'Oswald',sans-serif;font-size:15px;font-weight:500;flex:1;}
+.tc-m-stats{font-family:'Inconsolata',monospace;font-size:10px;color:var(--muted);text-align:right;flex:1;}
+.tc-m-score{font-family:'Oswald',sans-serif;font-size:16px;font-weight:700;color:var(--gold);min-width:50px;text-align:right;}
+.tc-m-score span{font-family:'Inconsolata',monospace;font-size:9px;color:var(--muted);margin-left:2px;}
+.team-lbl{font-family:'Inconsolata',monospace;font-size:11px;letter-spacing:.25em;color:var(--muted);margin:24px 0 10px;}
+
+@media(max-width:700px){
+  .ts-header,.ts-row{grid-template-columns:30px 1fr 80px 70px;}
+  .ts-header .hm,.ts-row .hm{display:none;}
+  .tc-avgs{grid-template-columns:1fr 1fr;}
+  .tc-avg:last-child{grid-column:1/-1;border-top:1px solid var(--border);border-right:none;}
+  .tc-m-stats{font-size:9px;}
+}
+
+/* HOW TO WIN */
 .htw-hero{background:var(--text);color:#fff;padding:28px 24px;margin-bottom:16px;}
 .htw-hero-eye{font-family:'Inconsolata',monospace;font-size:11px;letter-spacing:.3em;color:rgba(255,255,255,.4);margin-bottom:6px;}
 .htw-hero-title{font-family:'Oswald',sans-serif;font-size:clamp(28px,6vw,48px);font-weight:700;line-height:1.1;margin-bottom:10px;}
@@ -103,19 +134,16 @@ h1 span{color:var(--gold);}
 </div>
 <div class="tabs">
   <button class="tab on" onclick="show('board',this)">🏆 Overall Rank</button>
-  <button class="tab" onclick="show('revenue',this)">💰 Revenue</button>
-  <button class="tab" onclick="show('closes',this)">🤝 Closes</button>
-  <button class="tab" onclick="show('sets',this)">📅 Sets</button>
+  <button class="tab" onclick="show('teams',this)">👥 Teams</button>
   <button class="tab" onclick="show('howtowin',this)">🔥 How to Win</button>
 </div>
 <div id="board" class="sec on"></div>
-<div id="revenue" class="sec"></div>
-<div id="closes" class="sec"></div>
-<div id="sets" class="sec"></div>
+<div id="teams" class="sec"></div>
 <div id="howtowin" class="sec"></div>
 <div class="footer"><div class="fl" id="footerL"></div><div class="fr">WHO'S NEXT?</div></div>
 </div>
-<script type="text/javascript">
+
+<script>
 var DATA = {
   month:"March 2026", workDay:10, workDaysTotal:21, goal:1000000,
   updatedAt:"Thu Mar 12, 2026",
@@ -142,80 +170,103 @@ var DATA = {
   ]
 };
 
+var TEAMS = [
+  {name:"Team 1", members:["Dante N","Jonathan Rolling"]},
+  {name:"Team 2", members:["Brent Jackman","Jose Bernal","Daniel Jordan"]},
+  {name:"Team 3", members:["TJ Miller"]},
+  {name:"Team 4", members:["Gloria","Emery Sage","Kenny"]},
+  {name:"Team 5", members:["Andy Perez"]},
+  {name:"Team 6", members:["Caroline","Habib Fazli","Shivang Kapoor"]},
+  {name:"Team 7", members:["Ben","Samuel Michalcin","Suraj Bali"]},
+  {name:"Team 8", members:["Harvey","Petros Foustanellas","Saray Cortes"]}
+];
+
 function $(id){return document.getElementById(id);}
-function fmt$(n){return (n||n===0)?'$'+Math.round(n).toLocaleString():'--';}
+function fmt$(n){return(n||n===0)?'$'+Math.round(n).toLocaleString():'--';}
 function fmtP(n){return n!=null?n.toFixed(1)+'%':'--';}
 var RC=['var(--r1)','var(--r2)','var(--r3)'];
 function rc(i){return RC[i]||'var(--muted)';}
 function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
 function show(id,btn){
-  var secs=document.querySelectorAll('.sec');for(var i=0;i<secs.length;i++)secs[i].classList.remove('on');
-  var tabs=document.querySelectorAll('.tab');for(var i=0;i<tabs.length;i++)tabs[i].classList.remove('on');
+  document.querySelectorAll('.sec').forEach(function(s){s.classList.remove('on');});
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on');});
   $(id).classList.add('on');btn.classList.add('on');
 }
-var active=DATA.reps.filter(function(r){return r.rev>0||r.cls>0||r.sets>0;});
+
+// SCORING
+var allReps=DATA.reps.map(function(r){return Object.assign({},r);});
+var active=allReps.filter(function(r){return r.rev>0||r.cls>0||r.sets>0;});
 var mR=Math.max.apply(null,active.map(function(r){return r.rev;}).concat([1]));
 var mC=Math.max.apply(null,active.map(function(r){return r.cls;}).concat([1]));
 var mS=Math.max.apply(null,active.map(function(r){return r.sets;}).concat([1]));
+
 var scored=active.map(function(r){
-  return {name:r.name,rev:r.rev,cls:r.cls,sets:r.sets,cc:r.cc,
+  return {
+    name:r.name,rev:r.rev,cls:r.cls,sets:r.sets,cc:r.cc,
     score:Math.round((r.rev/mR*100)*.35+(r.cls/mC*100)*.30+(r.sets/mS*100)*.35),
     rpc:r.cls>0?Math.round(r.rev/r.cls):null,
-    cr:r.sets>0?r.cls/r.sets*100:null};
+    cr:r.sets>0?r.cls/r.sets*100:null
+  };
 }).sort(function(a,b){return b.score-a.score||a.name.localeCompare(b.name);});
+
+// also build a full map including zero-activity reps
+var repMap={};
+scored.forEach(function(r){repMap[r.name]=r;});
+DATA.reps.forEach(function(r){
+  if(!repMap[r.name]) repMap[r.name]={name:r.name,rev:0,cls:0,sets:0,cc:0,score:0,rpc:null,cr:null};
+});
+
 var totRev=scored.reduce(function(s,r){return s+r.rev;},0);
 var totCls=scored.reduce(function(s,r){return s+r.cls;},0);
 var totSet=scored.reduce(function(s,r){return s+r.sets;},0);
-var totCC=scored.reduce(function(s,r){return s+(r.cc||0);},0);
 var pct=totRev/DATA.goal*100;
 var dLeft=DATA.workDaysTotal-DATA.workDay;
 var needed=dLeft>0?Math.ceil((DATA.goal-totRev)/dLeft):0;
-var byRev=scored.slice().sort(function(a,b){return b.rev-a.rev||a.name.localeCompare(b.name);});
-var byCls=scored.slice().sort(function(a,b){return b.cls-a.cls||a.name.localeCompare(b.name);});
-var bySet=scored.filter(function(r){return r.sets>0;}).sort(function(a,b){return b.sets-a.sets||a.name.localeCompare(b.name);});
+
+// HEADER
 var parts=DATA.month.split(' ');
 $('hMonth').innerHTML=parts[0]+' <span>'+parts[1]+'</span>';
 $('hMeta').innerHTML=DATA.updatedAt.toUpperCase()+'<br>WORK DAY '+DATA.workDay+' OF '+DATA.workDaysTotal;
+
+// METRIC CARDS
 var mc=$('metricCards');
 var activeClosers=scored.filter(function(r){return r.rev>0;}).length;
 var avgRevPerRep=activeClosers>0?Math.round(totRev/activeClosers):0;
-var mDefs=[
-  ['&#x1F4B0;','REVENUE MTD',fmt$(totRev),'linear-gradient(135deg,#7a5808,#c8960a)'],
-  ['&#x1F91D;','CLOSES MTD',String(totCls),'linear-gradient(135deg,#8a2010,#c0392b)'],
-  ['&#x1F4C5;','SETS MTD',String(totSet),'linear-gradient(135deg,#0a2a5a,#2980b9)'],
-  ['&#x1F3AF;','AVG REV / REP',fmt$(avgRevPerRep),'linear-gradient(135deg,#2d0a5a,#7a30b9)']
-];
-for(var i=0;i<mDefs.length;i++){
+[['&#x1F4B0;','REVENUE MTD',fmt$(totRev),'linear-gradient(135deg,#7a5808,#c8960a)'],
+ ['&#x1F91D;','CLOSES MTD',String(totCls),'linear-gradient(135deg,#8a2010,#c0392b)'],
+ ['&#x1F4C5;','SETS MTD',String(totSet),'linear-gradient(135deg,#0a2a5a,#2980b9)'],
+ ['&#x1F3AF;','AVG REV / REP',fmt$(avgRevPerRep),'linear-gradient(135deg,#2d0a5a,#7a30b9)']
+].forEach(function(d){
   var c=el('div','mc');
-  c.innerHTML='<div class="mc-top" style="background:'+mDefs[i][3]+'"></div><div class="mc-lbl">'+mDefs[i][0]+' '+mDefs[i][1]+'</div><div class="mc-val">'+mDefs[i][2]+'</div>';
+  c.innerHTML='<div class="mc-top" style="background:'+d[3]+'"></div><div class="mc-lbl">'+d[0]+' '+d[1]+'</div><div class="mc-val">'+d[2]+'</div>';
   mc.appendChild(c);
-}
+});
+
+// PACE
 $('paceTitle').textContent=fmt$(totRev)+' of '+fmt$(DATA.goal);
 var ps=$('paceStats');
-var pDefs=[[pct.toFixed(1)+'%','ATTAINED'],[dLeft,'DAYS LEFT'],[fmt$(needed),'REV/DAY NEEDED']];
-for(var i=0;i<pDefs.length;i++){
-  ps.innerHTML+='<div><span class="ps-val">'+pDefs[i][0]+'</span><span class="ps-lbl">'+pDefs[i][1]+'</span></div>';
-}
+[[pct.toFixed(1)+'%','ATTAINED'],[dLeft,'DAYS LEFT'],[fmt$(needed),'REV/DAY NEEDED']].forEach(function(d){
+  ps.innerHTML+='<div><span class="ps-val">'+d[0]+'</span><span class="ps-lbl">'+d[1]+'</span></div>';
+});
 setTimeout(function(){$('paceFill').style.width=Math.min(pct,100)+'%';},100);
+
+// OVERALL BOARD
 var board=$('board');
-for(var i=0;i<scored.length;i++){
-  var r=scored[i];
+scored.forEach(function(r,i){
   var pctS=scored[0].score>0?r.score/scored[0].score*100:0;
   var barC=i===0?'var(--r1)':i===1?'var(--r2)':i===2?'var(--r3)':'var(--text)';
   var gapTxt=i===0
     ?'<span style="color:var(--green)">&#9650; LEADING THE BOARD</span>'
     :'<span style="color:var(--red)">&#9650; '+(scored[i-1].score-r.score)+' pts to #'+i+' &nbsp;|&nbsp; '+fmt$(scored[i-1].rev-r.rev)+' rev gap</span>';
-  var pills=[
+  var pillHtml=[
     [fmt$(r.rev),'REV','var(--gold)'],
     [r.cls+' cls','CLOSES','var(--red)'],
     [(r.sets||'--')+' sets','SETS','var(--blue)'],
     [r.rpc?fmt$(r.rpc):'--','REV/CL','#555'],
     [fmtP(r.cr),'CR','var(--green)']
-  ];
-  var pillHtml='';
-  for(var p=0;p<pills.length;p++){
-    pillHtml+='<div class="pill" style="border-left-color:'+pills[p][2]+'"><span class="pv">'+pills[p][0]+'</span><span class="pl">'+pills[p][1]+'</span></div>';
-  }
+  ].map(function(p){
+    return '<div class="pill" style="border-left-color:'+p[2]+'"><span class="pv">'+p[0]+'</span><span class="pl">'+p[1]+'</span></div>';
+  }).join('');
   var row=el('div','rr');
   row.style.animationDelay=(i*.04)+'s';
   row.innerHTML='<div class="rrank" style="color:'+rc(i)+'">'+(i+1)+'</div>'
@@ -225,96 +276,111 @@ for(var i=0;i<scored.length;i++){
     +'<div class="rgap">'+gapTxt+'</div></div>'
     +'<div><div class="rscore" style="color:'+rc(i)+'">'+r.score+'</div><div class="rslbl">SCORE</div></div>';
   board.appendChild(row);
-}
-function buildChart(cid,rows,fill,valFn,gapFn){
-  var sec=$(cid);
-  for(var i=0;i<rows.length;i++){
-    var r=rows[i];
-    var w=rows[0]._max>0?r._val/rows[0]._max*100:0;
-    var row=el('div','cr');
-    row.style.animationDelay=(i*.03)+'s';
-    row.innerHTML='<div class="crank" style="color:'+rc(i)+'">'+(i+1)+'</div>'
-      +'<div class="cname">'+r.name+'</div>'
-      +'<div class="ctrack"><div class="cfill" style="width:'+w+'%;'+fill+'"></div></div>'
-      +'<div><span class="cval" style="color:'+rc(i)+'">'+valFn(r)+'</span>'
-      +'<span class="cgap" style="color:'+(i===0?'var(--green)':'var(--red)')+'">'+gapFn(r,i)+'</span></div>';
-    sec.appendChild(row);
-  }
-}
-var rR=byRev.map(function(r){return {name:r.name,rev:r.rev,cls:r.cls,sets:r.sets,cc:r.cc,score:r.score,rpc:r.rpc,cr:r.cr,_val:r.rev,_max:byRev[0].rev};});
-var cR=byCls.map(function(r){return {name:r.name,rev:r.rev,cls:r.cls,sets:r.sets,cc:r.cc,score:r.score,rpc:r.rpc,cr:r.cr,_val:r.cls,_max:byCls[0].cls};});
-var sR=bySet.map(function(r){return {name:r.name,rev:r.rev,cls:r.cls,sets:r.sets,cc:r.cc,score:r.score,rpc:r.rpc,cr:r.cr,_val:r.sets,_max:bySet[0].sets};});
-$('revenue').innerHTML='<div class="clbl">REVENUE MTD -- '+fmt$(totRev)+' TOTAL</div>';
-$('closes').innerHTML='<div class="clbl">CLOSES MTD -- '+totCls+' TOTAL</div>';
-$('sets').innerHTML='<div class="clbl">SETS MTD -- '+totSet+' TOTAL</div>';
-buildChart('revenue',rR,'background:linear-gradient(90deg,#7a5808,#c8960a)',function(r){return fmt$(r.rev);},function(r,i){return i===0?'&#9650; LEADER':'&#9650; '+fmt$(byRev[0].rev-r.rev)+' to #1';});
-buildChart('closes',cR,'background:linear-gradient(90deg,#8a2010,#c0392b)',function(r){return r.cls+' closes';},function(r,i){return i===0?'&#9650; LEADER':'&#9650; '+(byCls[0].cls-r.cls)+' to #1';});
-buildChart('sets',sR,'background:linear-gradient(90deg,#0a2a5a,#2980b9)',function(r){return r.sets+' sets';},function(r,i){return i===0?'&#9650; LEADER':'&#9650; '+(bySet[0].sets-r.sets)+' to #1';});
-$('footerL').textContent='UPDATED DAILY - SDR TEAM - '+DATA.month.toUpperCase();
+});
 
-// ── HOW TO WIN ──
+// TEAMS TAB
+(function(){
+  var sec=$('teams');
+
+  var teams=TEAMS.map(function(t){
+    var mems=t.members.map(function(n){return repMap[n]||{name:n,rev:0,cls:0,sets:0,score:0};});
+    var n=mems.length;
+    var tRev=mems.reduce(function(s,r){return s+r.rev;},0);
+    var tCls=mems.reduce(function(s,r){return s+r.cls;},0);
+    var tSets=mems.reduce(function(s,r){return s+r.sets;},0);
+    var tScore=mems.reduce(function(s,r){return s+r.score;},0);
+    return {
+      name:t.name, members:mems, n:n,
+      totRev:tRev, totCls:tCls, totSets:tSets,
+      avgScore:n>0?Math.round(tScore/n*10)/10:0,
+      avgRev:n>0?Math.round(tRev/n):0,
+      avgCls:n>0?Math.round(tCls/n*10)/10:0,
+      avgSets:n>0?Math.round(tSets/n*10)/10:0
+    };
+  }).sort(function(a,b){return b.avgScore-a.avgScore||a.name.localeCompare(b.name);});
+
+  // Standings table
+  var hdr=el('div','ts-header');
+  hdr.innerHTML='<div>#</div><div>TEAM</div><div class="hm" style="text-align:right">AVG REV/REP</div><div class="hm" style="text-align:right">AVG SETS</div><div style="text-align:right">AVG CLS</div><div style="text-align:right">AVG SCORE</div>';
+  sec.appendChild(hdr);
+
+  teams.forEach(function(t,i){
+    var row=el('div','ts-row');
+    row.style.animationDelay=(i*.05)+'s';
+    var c=rc(i);
+    row.innerHTML='<div class="ts-rank" style="color:'+c+'">'+(i+1)+'</div>'
+      +'<div><div class="ts-name" style="color:'+c+'">'+t.name+'</div><div class="ts-reps">'+t.n+' rep'+(t.n!==1?'s':'')+'</div></div>'
+      +'<div class="ts-val hm">'+fmt$(t.avgRev)+'</div>'
+      +'<div class="ts-val hm">'+t.avgSets+'</div>'
+      +'<div class="ts-val">'+t.avgCls+'</div>'
+      +'<div class="ts-score" style="color:'+c+'">'+t.avgScore+'</div>';
+    sec.appendChild(row);
+  });
+
+  // Team cards
+  var lbl=el('div','team-lbl');lbl.textContent='TEAM BREAKDOWN';sec.appendChild(lbl);
+  var cards=el('div','team-cards');
+
+  teams.forEach(function(t,i){
+    var c=rc(i);
+    var card=el('div','tc');
+    card.style.animationDelay=(i*.06)+'s';
+    var mems=t.members.slice().sort(function(a,b){return b.score-a.score;});
+    var memberHtml=mems.map(function(r){
+      return '<div class="tc-member">'
+        +'<div class="tc-m-name">'+r.name+'</div>'
+        +'<div class="tc-m-stats">'+fmt$(r.rev)+' &nbsp;·&nbsp; '+r.cls+' cls &nbsp;·&nbsp; '+r.sets+' sets</div>'
+        +'<div class="tc-m-score">'+r.score+'<span>pts</span></div>'
+      +'</div>';
+    }).join('');
+
+    card.innerHTML=
+      '<div class="tc-head">'
+        +'<div class="tc-head-left"><div class="tc-title" style="color:'+c+'">#'+(i+1)+' &nbsp;'+t.name+'</div>'
+        +'<div class="tc-badge">'+t.n+' REP'+(t.n!==1?'S':'')+' &nbsp;·&nbsp; AVG SCORE '+t.avgScore+'</div></div>'
+        +'<div class="tc-totals">'
+          +'<div class="tc-tot"><span class="tc-tot-val">'+fmt$(t.totRev)+'</span><span class="tc-tot-lbl">TOTAL REV</span></div>'
+          +'<div class="tc-tot"><span class="tc-tot-val">'+t.totCls+'</span><span class="tc-tot-lbl">TOTAL CLS</span></div>'
+          +'<div class="tc-tot"><span class="tc-tot-val">'+t.totSets+'</span><span class="tc-tot-lbl">TOTAL SETS</span></div>'
+        +'</div>'
+      +'</div>'
+      +'<div class="tc-avgs">'
+        +'<div class="tc-avg"><div class="tc-avg-val">'+fmt$(t.avgRev)+'</div><div class="tc-avg-lbl">AVG REV / REP</div></div>'
+        +'<div class="tc-avg"><div class="tc-avg-val">'+t.avgCls+'</div><div class="tc-avg-lbl">AVG CLOSES / REP</div></div>'
+        +'<div class="tc-avg"><div class="tc-avg-val">'+t.avgSets+'</div><div class="tc-avg-lbl">AVG SETS / REP</div></div>'
+      +'</div>'
+      +'<div>'+memberHtml+'</div>';
+    cards.appendChild(card);
+  });
+  sec.appendChild(cards);
+})();
+
+// HOW TO WIN
 $('howtowin').innerHTML=
 '<div class="htw-hero">'
   +'<div class="htw-hero-eye">THE PLAYBOOK</div>'
   +'<div class="htw-hero-title">YOU DON\'T CLIMB THE BOARD<br>BY <span>ACCIDENT.</span></div>'
   +'<div class="htw-hero-sub">Every number on this leaderboard is earned. Here\'s exactly how your score is built — and exactly how to blow past the person above you.</div>'
 +'</div>'
-
 +'<div class="htw-cards">'
-  +'<div class="htw-card" style="border-color:var(--gold)">'
-    +'<div class="htw-card-weight" style="color:var(--gold)">35</div>'
-    +'<div class="htw-card-label">POINTS — REVENUE</div>'
-    +'<div class="htw-card-tip"><strong>💰 The output that matters.</strong>Revenue closes the loop. A big deal can launch you up the board in a single day. But it\'s now equal weight with Sets — so you can\'t coast on one big close. You have to earn it end to end.</div>'
-  +'</div>'
-  +'<div class="htw-card" style="border-color:var(--red)">'
-    +'<div class="htw-card-weight" style="color:var(--red)">30</div>'
-    +'<div class="htw-card-label">POINTS — CLOSES</div>'
-    +'<div class="htw-card-tip"><strong>🤝 Volume wins over time.</strong>Don\'t sleep on closes just because the deal is smaller. Every close stacks your score and builds momentum. Two closes beats one close — every time. Stack them up.</div>'
-  +'</div>'
-  +'<div class="htw-card" style="border-color:var(--blue)">'
-    +'<div class="htw-card-weight" style="color:var(--blue)">35</div>'
-    +'<div class="htw-card-label">POINTS — SETS</div>'
-    +'<div class="htw-card-tip"><strong>📅 Equal to revenue. No excuses.</strong>Sets are now worth as much as revenue. Fill the pipeline every single day. Reps with 25+ sets are putting serious pressure on the board — even before a close. Post every one.</div>'
-  +'</div>'
+  +'<div class="htw-card" style="border-color:var(--gold)"><div class="htw-card-weight" style="color:var(--gold)">35</div><div class="htw-card-label">POINTS — REVENUE</div><div class="htw-card-tip"><strong>💰 The output that matters.</strong>Revenue closes the loop. A big deal can launch you up the board in a single day. But it\'s equal weight with Sets — so you can\'t coast on one big close. Earn it end to end.</div></div>'
+  +'<div class="htw-card" style="border-color:var(--red)"><div class="htw-card-weight" style="color:var(--red)">30</div><div class="htw-card-label">POINTS — CLOSES</div><div class="htw-card-tip"><strong>🤝 Volume wins over time.</strong>Don\'t sleep on closes just because the deal is smaller. Every close stacks your score and builds momentum. Two closes beats one close — every time. Stack them up.</div></div>'
+  +'<div class="htw-card" style="border-color:var(--blue)"><div class="htw-card-weight" style="color:var(--blue)">35</div><div class="htw-card-label">POINTS — SETS</div><div class="htw-card-tip"><strong>📅 Equal to revenue. No excuses.</strong>Sets are now worth as much as revenue. Fill the pipeline every single day. Reps with 25+ sets are putting serious pressure on the board — even before a close. Post every one.</div></div>'
 +'</div>'
++'<div class="htw-rule"><div class="htw-rule-title">📐 How the Score Actually Works</div><div class="htw-rule-body">Your score is <strong>relative to the top performer</strong> in each category — not a fixed number. If the top revenue earner has $63K and you have $31K, you score proportionally on revenue. Same math applies to closes and sets.<br><br>This means <strong>the board shifts every single day.</strong> Someone closes a deal tonight and they jump you. You post sets all week and you creep up. Nothing is locked in until the month ends.</div></div>'
++'<div class="htw-example"><div class="htw-example-title">🔬 SCORE BREAKDOWN — LIVE EXAMPLES (TODAY\'S DATA)</div>'
++scored.slice(0,4).map(function(r){
+  return '<div class="htw-ex-row"><div class="htw-ex-name">'+r.name+'</div><div class="htw-ex-stats">'+fmt$(r.rev)+' &nbsp;·&nbsp; '+r.cls+' cls &nbsp;·&nbsp; '+r.sets+' sets</div><div class="htw-ex-score">'+r.score+' pts</div></div>';
+}).join('')+'</div>'
++'<div class="htw-rule"><div class="htw-rule-title">⚡ The Fastest Ways to Move Up Right Now</div><div class="htw-rule-body">'
+  +'<strong>1. Close something today.</strong> Revenue and Sets are now equal at 35 points each. A close moves BOTH — it adds revenue AND proves you can convert. Double impact.<br><br>'
+  +'<strong>2. Post every set, every day.</strong> Sets are worth as much as revenue — 35% of your score. Reps stacking 25+ sets are climbing the board whether they\'ve closed or not. Go fill that pipeline.<br><br>'
+  +'<strong>3. Know your gap.</strong> Look at the Overall Rank tab. It shows you exactly how many points and how much revenue separates you from the person above you. That\'s your target.<br><br>'
+  +'<strong>4. Rev/Close matters.</strong> A rep with 2 big closes can outscore a rep with 5 small ones. Quality and quantity both count.'
++'</div></div>'
++'<div class="htw-cta"><div class="htw-cta-title">THE BOARD RESETS IN <span>'+(DATA.workDaysTotal-DATA.workDay)+' WORK DAYS.</span></div><div class="htw-cta-body">Every single person on this team has time to move. The reps who finish strong aren\'t the ones who waited — they\'re the ones who decided. What are you doing today?</div></div>';
 
-+'<div class="htw-rule">'
-  +'<div class="htw-rule-title">📐 How the Score Actually Works</div>'
-  +'<div class="htw-rule-body">'
-    +'Your score is <strong>relative to the top performer</strong> in each category — not a fixed number. '
-    +'If the top revenue earner has $40K and you have $20K, you score <strong>25 out of 50</strong> on revenue. '
-    +'Same math applies to closes and sets.<br><br>'
-    +'This means <strong>the board shifts every single day.</strong> '
-    +'Someone closes a deal tonight and they jump you. You post sets all week and you creep up. '
-    +'Nothing is locked in until the month ends.'
-  +'</div>'
-+'</div>'
-
-+'<div class="htw-example">'
-  +'<div class="htw-example-title">🔬 SCORE BREAKDOWN — LIVE EXAMPLES (TODAY\'S DATA)</div>'
-  +scored.slice(0,4).map(function(r){
-    return '<div class="htw-ex-row">'
-      +'<div class="htw-ex-name">'+r.name+'</div>'
-      +'<div class="htw-ex-stats">'+fmt$(r.rev)+' rev &nbsp;·&nbsp; '+r.cls+' cls &nbsp;·&nbsp; '+r.sets+' sets</div>'
-      +'<div class="htw-ex-score">'+r.score+' pts</div>'
-    +'</div>';
-  }).join('')
-+'</div>'
-
-+'<div class="htw-rule">'
-  +'<div class="htw-rule-title">⚡ The Fastest Ways to Move Up Right Now</div>'
-  +'<div class="htw-rule-body">'
-    +'<strong>1. Close something today.</strong> Revenue and Sets are now equal at 35 points each. A close moves BOTH — it adds revenue AND proves you can convert. Double impact.<br><br>'
-    +'<strong>2. Post every set, every day.</strong> Sets are worth as much as revenue now — 35% of your score. Reps stacking 25+ sets are climbing the board whether they\'ve closed or not. Go fill that pipeline.<br><br>'
-    +'<strong>3. Know your gap.</strong> Look at the Overall Rank tab. It shows you exactly how many points and how much revenue separates you from the person above you. That\'s your target.<br><br>'
-    +'<strong>4. Rev/Close matters.</strong> A rep with 2 big closes can outscore a rep with 5 small ones. Quality and quantity both count.'
-  +'</div>'
-+'</div>'
-
-+'<div class="htw-cta">'
-  +'<div class="htw-cta-title">THE BOARD RESETS IN <span>'+(DATA.workDaysTotal-DATA.workDay)+' WORK DAYS.</span></div>'
-  +'<div class="htw-cta-body">Every single person on this team has time to move. The reps who finish strong aren\'t the ones who waited — they\'re the ones who decided. What are you doing today?</div>'
-+'</div>';
+$('footerL').textContent='UPDATED DAILY - SDR TEAM - '+DATA.month.toUpperCase();
 </script>
 </body>
 </html>
