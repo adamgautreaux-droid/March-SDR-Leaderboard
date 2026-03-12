@@ -4,143 +4,249 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SDR Leaderboard — March 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inconsolata:wght@400;500;600&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inconsolata:wght@400;500;600&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-:root{--bg:#f5f2eb;--border:#ddd9ce;--text:#1a1814;--muted:#9a9488;--faint:#e8e4db;--gold:#c8960a;--red:#c0392b;--green:#1a7a4a;--blue:#2980b9;--r1:#c8960a;--r2:#7a7a7a;--r3:#9a6030;}
-body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:20px 14px;}
-.wrap{max-width:900px;margin:0 auto;}
-.header{border-bottom:3px solid var(--text);padding-bottom:16px;margin-bottom:20px;}
+:root{
+  --bg:#f5f2eb;--border:#ddd9ce;--text:#1a1814;--muted:#9a9488;--faint:#e8e4db;
+  --gold:#c8960a;--red:#c0392b;--green:#1a7a4a;--blue:#2980b9;
+  --r1:#c8960a;--r2:#7a7a7a;--r3:#9a6030;
+  --card-bg:#fff;
+}
+body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:16px 14px 40px;}
+.wrap{max-width:920px;margin:0 auto;}
+
+/* ── HEADER ── */
+.header{border-bottom:3px solid var(--text);padding-bottom:14px;margin-bottom:18px;}
 .eyebrow{font-family:'Inconsolata',monospace;font-size:11px;letter-spacing:.3em;color:var(--muted);margin-bottom:4px;}
 .header-row{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:8px;}
-h1{font-family:'Oswald',sans-serif;font-size:clamp(32px,8vw,62px);font-weight:700;line-height:1;}
+h1{font-family:'Oswald',sans-serif;font-size:clamp(30px,7vw,58px);font-weight:700;line-height:1;}
 h1 span{color:var(--gold);}
 .header-right{text-align:right;font-family:'Inconsolata',monospace;font-size:11px;color:var(--muted);line-height:1.8;}
-.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:6px;margin-bottom:6px;}
-.mc{background:var(--text);padding:18px 20px;position:relative;overflow:hidden;}
+
+/* ── METRIC CARDS ── */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:6px;margin-bottom:6px;}
+.mc{background:var(--text);padding:16px 18px;position:relative;overflow:hidden;}
 .mc-top{position:absolute;top:0;left:0;right:0;height:3px;}
-.mc-lbl{font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:.2em;color:rgba(255,255,255,.45);margin-bottom:8px;}
-.mc-val{font-family:'Oswald',sans-serif;font-size:clamp(26px,5vw,38px);font-weight:700;color:#fff;line-height:1;}
-.pace{background:#f0ece3;border:1px solid var(--border);padding:16px 20px;margin-bottom:24px;}
-.pace-lbl{font-family:'Inconsolata',monospace;font-size:11px;letter-spacing:.22em;color:var(--muted);margin-bottom:8px;}
-.pace-row{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;margin-bottom:10px;}
-.pace-title{font-family:'Oswald',sans-serif;font-size:clamp(16px,3.5vw,22px);font-weight:600;}
-.pace-stats{display:flex;gap:24px;flex-wrap:wrap;}
-.ps-val{font-family:'Oswald',sans-serif;font-size:24px;font-weight:700;color:var(--gold);display:block;}
-.ps-lbl{font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:.15em;color:var(--muted);}
+.mc-lbl{font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:.2em;color:rgba(255,255,255,.4);margin-bottom:6px;}
+.mc-val{font-family:'Oswald',sans-serif;font-size:clamp(24px,4.5vw,36px);font-weight:700;color:#fff;line-height:1;}
+
+/* ── PACE BAR ── */
+.pace{background:#f0ece3;border:1px solid var(--border);padding:14px 18px;margin-bottom:20px;}
+.pace-lbl{font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:.22em;color:var(--muted);margin-bottom:6px;}
+.pace-row{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:10px;margin-bottom:8px;}
+.pace-title{font-family:'Oswald',sans-serif;font-size:clamp(15px,3vw,20px);font-weight:600;}
+.pace-stats{display:flex;gap:20px;flex-wrap:wrap;}
+.ps-val{font-family:'Oswald',sans-serif;font-size:22px;font-weight:700;color:var(--gold);display:block;}
+.ps-lbl{font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:.13em;color:var(--muted);}
 .pbar-bg{height:6px;background:var(--faint);border-radius:2px;}
-.pbar-fg{height:100%;border-radius:2px;background:linear-gradient(90deg,#7a5808,var(--gold));}
+.pbar-fg{height:100%;border-radius:2px;background:linear-gradient(90deg,#7a5808,var(--gold));transition:width 1s ease;}
+
+/* ── SCORING KEY (always visible) ── */
+.scoring-key{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap;}
+.sk-item{flex:1;min-width:80px;background:var(--text);padding:10px 12px;display:flex;align-items:center;gap:8px;}
+.sk-num{font-family:'Oswald',sans-serif;font-size:22px;font-weight:700;}
+.sk-lbl{font-family:'Inconsolata',monospace;font-size:9px;letter-spacing:.15em;color:rgba(255,255,255,.45);line-height:1.5;}
+
+/* ── TABS ── */
 .tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:20px;}
-.tab{cursor:pointer;background:transparent;border:none;border-bottom:3px solid transparent;font-family:'Inconsolata',monospace;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:10px 16px;color:var(--muted);transition:all .15s;margin-bottom:-1px;}
+.tab{cursor:pointer;background:transparent;border:none;border-bottom:3px solid transparent;font-family:'Inconsolata',monospace;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:10px 16px;color:var(--muted);transition:all .15s;margin-bottom:-1px;white-space:nowrap;}
 .tab:hover,.tab.on{color:var(--text);}.tab.on{border-bottom-color:var(--gold);}
 .sec{display:none;}.sec.on{display:block;}
-@keyframes ri{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-.rr{border-bottom:1px solid var(--faint);padding:14px 0;display:grid;grid-template-columns:44px 1fr 60px;gap:0 12px;animation:ri .35s ease forwards;opacity:0;}
-.rrank{font-family:'Oswald',sans-serif;font-size:26px;font-weight:700;line-height:1;padding-top:4px;}
-.rname{font-family:'Oswald',sans-serif;font-size:22px;font-weight:600;margin-bottom:6px;line-height:1;}
-.pills{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px;}
-.pill{background:var(--faint);border-left:2px solid;padding:4px 10px;border-radius:0 2px 2px 0;}
-.pv{font-family:'Oswald',sans-serif;font-size:15px;font-weight:600;color:var(--text);}
-.pl{font-family:'Inconsolata',monospace;font-size:9px;color:var(--muted);margin-left:5px;letter-spacing:.1em;}
-.sbar-bg{height:5px;background:var(--faint);border-radius:2px;}
-.sbar-fg{height:100%;border-radius:2px;}
-.rgap{font-family:'Inconsolata',monospace;font-size:11px;margin-top:5px;}
-.rscore{font-family:'Oswald',sans-serif;font-size:32px;font-weight:700;line-height:1;text-align:right;}
-.rslbl{font-family:'Inconsolata',monospace;font-size:9px;color:var(--muted);letter-spacing:.15em;margin-top:3px;text-align:right;}
-.footer{border-top:1px solid var(--border);margin-top:36px;padding-top:14px;display:flex;justify-content:space-between;align-items:center;}
-.fl{font-family:'Inconsolata',monospace;font-size:11px;color:var(--muted);letter-spacing:.15em;}
-.fr{font-family:'Oswald',sans-serif;font-size:15px;color:var(--muted);letter-spacing:.1em;}
 
-/* TEAMS */
-.ts-header{display:grid;grid-template-columns:36px 1fr 110px 80px 80px 90px;gap:0 8px;padding:9px 14px;background:var(--text);font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:.15em;color:rgba(255,255,255,.45);}
-.ts-row{display:grid;grid-template-columns:36px 1fr 110px 80px 80px 90px;gap:0 8px;padding:12px 14px;border-bottom:1px solid var(--faint);animation:ri .35s ease forwards;opacity:0;align-items:center;}
-.ts-rank{font-family:'Oswald',sans-serif;font-size:22px;font-weight:700;}
-.ts-name{font-family:'Oswald',sans-serif;font-size:17px;font-weight:600;}
-.ts-reps{font-family:'Inconsolata',monospace;font-size:10px;color:var(--muted);margin-top:2px;}
-.ts-val{font-family:'Oswald',sans-serif;font-size:15px;font-weight:600;text-align:right;}
-.ts-score{font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;text-align:right;}
-.team-cards{display:grid;gap:14px;margin-top:24px;}
-.tc{border:1px solid var(--border);overflow:hidden;animation:ri .4s ease forwards;opacity:0;}
-.tc-head{background:var(--text);color:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;}
-.tc-head-left{}
-.tc-title{font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;}
-.tc-badge{font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:.2em;color:rgba(255,255,255,.4);margin-top:3px;}
-.tc-totals{display:flex;gap:20px;flex-wrap:wrap;}
-.tc-tot{text-align:right;}
-.tc-tot-val{font-family:'Oswald',sans-serif;font-size:18px;font-weight:700;color:var(--gold);display:block;}
-.tc-tot-lbl{font-family:'Inconsolata',monospace;font-size:9px;letter-spacing:.12em;color:rgba(255,255,255,.35);}
-.tc-avgs{display:grid;grid-template-columns:repeat(3,1fr);background:#f0ece3;border-bottom:1px solid var(--border);}
-.tc-avg{padding:10px 14px;text-align:center;border-right:1px solid var(--border);}
-.tc-avg:last-child{border-right:none;}
-.tc-avg-val{font-family:'Oswald',sans-serif;font-size:17px;font-weight:700;}
-.tc-avg-lbl{font-family:'Inconsolata',monospace;font-size:9px;letter-spacing:.12em;color:var(--muted);margin-top:2px;}
-.tc-member{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--faint);}
-.tc-member:last-child{border-bottom:none;}
-.tc-m-name{font-family:'Oswald',sans-serif;font-size:15px;font-weight:500;flex:1;}
-.tc-m-stats{font-family:'Inconsolata',monospace;font-size:10px;color:var(--muted);text-align:right;flex:1;}
-.tc-m-score{font-family:'Oswald',sans-serif;font-size:16px;font-weight:700;color:var(--gold);min-width:50px;text-align:right;}
-.tc-m-score span{font-family:'Inconsolata',monospace;font-size:9px;color:var(--muted);margin-left:2px;}
-.team-lbl{font-family:'Inconsolata',monospace;font-size:11px;letter-spacing:.25em;color:var(--muted);margin:24px 0 10px;}
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
-@media(max-width:700px){
-  .ts-header,.ts-row{grid-template-columns:30px 1fr 80px 70px;}
-  .ts-header .hm,.ts-row .hm{display:none;}
-  .tc-avgs{grid-template-columns:1fr 1fr;}
-  .tc-avg:last-child{grid-column:1/-1;border-top:1px solid var(--border);border-right:none;}
-  .tc-m-stats{font-size:9px;}
+/* ── OVERALL BOARD ── */
+.rep-card{
+  border:1px solid var(--border);
+  background:var(--card-bg);
+  margin-bottom:8px;
+  animation:fadeUp .4s ease forwards;
+  opacity:0;
 }
+.rep-card.inactive{background:#faf9f6;border-color:var(--faint);}
+.rep-card-top{display:grid;grid-template-columns:52px 1fr auto;gap:0 10px;padding:14px 16px 0;}
+.rep-rank{font-family:'Oswald',sans-serif;font-size:30px;font-weight:700;line-height:1;padding-top:2px;}
+.rep-name{font-family:'Oswald',sans-serif;font-size:21px;font-weight:600;line-height:1;margin-bottom:4px;}
+.rep-team-tag{font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:.15em;color:var(--muted);}
+.rep-score-col{text-align:right;}
+.rep-score{font-family:'Oswald',sans-serif;font-size:34px;font-weight:700;line-height:1;}
+.rep-score-lbl{font-family:'Inconsolata',monospace;font-size:9px;letter-spacing:.15em;color:var(--muted);margin-top:2px;}
 
-/* HOW TO WIN */
-.htw-hero{background:var(--text);color:#fff;padding:28px 24px;margin-bottom:16px;}
-.htw-hero-eye{font-family:'Inconsolata',monospace;font-size:11px;letter-spacing:.3em;color:rgba(255,255,255,.4);margin-bottom:6px;}
-.htw-hero-title{font-family:'Oswald',sans-serif;font-size:clamp(28px,6vw,48px);font-weight:700;line-height:1.1;margin-bottom:10px;}
+/* score bar */
+.rep-bar-wrap{padding:8px 16px 0;}
+.rep-bar-bg{height:4px;background:var(--faint);border-radius:2px;}
+.rep-bar-fg{height:100%;border-radius:2px;transition:width .8s ease;}
+
+/* stats row */
+.rep-stats{display:flex;gap:0;padding:10px 16px;flex-wrap:wrap;}
+.rep-stat{padding:4px 12px 4px 0;min-width:80px;}
+.rep-stat:first-child{padding-left:0;}
+.stat-val{font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;}
+.stat-lbl{font-family:'Inconsolata',monospace;font-size:9px;letter-spacing:.13em;color:var(--muted);}
+
+/* gap / action row */
+.rep-gap{padding:8px 16px 12px;border-top:1px solid var(--faint);}
+.gap-behind{font-family:'Inconsolata',monospace;font-size:11px;color:var(--red);}
+.gap-leading{font-family:'Inconsolata',monospace;font-size:11px;color:var(--green);}
+.gap-action{font-family:'Barlow',sans-serif;font-size:12px;font-weight:600;color:var(--text);margin-top:3px;}
+.gap-action span{color:var(--gold);}
+
+/* pace indicator */
+.rep-pace{display:inline-block;font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:.1em;padding:2px 7px;margin-left:8px;border-radius:2px;vertical-align:middle;}
+.pace-on{background:#e8f5ee;color:var(--green);}
+.pace-behind{background:#fdecea;color:var(--red);}
+
+/* inactive state */
+.rep-inactive-msg{padding:10px 16px 14px;font-family:'Barlow',sans-serif;font-size:13px;color:var(--muted);font-style:italic;}
+.rep-inactive-action{font-family:'Barlow',sans-serif;font-size:13px;font-weight:600;color:var(--text);margin-top:2px;}
+
+/* ── TEAMS TAB ── */
+.team-standings-wrap{margin-bottom:24px;}
+.ts-title{font-family:'Inconsolata',monospace;font-size:11px;letter-spacing:.25em;color:var(--muted);margin-bottom:10px;}
+.ts-card{
+  display:grid;
+  grid-template-columns:46px 1fr auto;
+  gap:0 12px;
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  padding:14px 16px;
+  margin-bottom:6px;
+  animation:fadeUp .35s ease forwards;
+  opacity:0;
+  align-items:center;
+}
+.ts-rank{font-family:'Oswald',sans-serif;font-size:28px;font-weight:700;}
+.ts-name{font-family:'Oswald',sans-serif;font-size:18px;font-weight:600;line-height:1;margin-bottom:4px;}
+.ts-meta{font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:.12em;color:var(--muted);}
+.ts-avgs{display:flex;gap:16px;flex-wrap:wrap;margin-top:6px;}
+.ts-avg{text-align:left;}
+.ts-avg-val{font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;}
+.ts-avg-lbl{font-family:'Inconsolata',monospace;font-size:9px;letter-spacing:.1em;color:var(--muted);}
+.ts-score-wrap{text-align:right;}
+.ts-score{font-family:'Oswald',sans-serif;font-size:28px;font-weight:700;}
+.ts-score-lbl{font-family:'Inconsolata',monospace;font-size:9px;letter-spacing:.13em;color:var(--muted);margin-top:2px;}
+.ts-bar-row{grid-column:1/-1;margin-top:6px;}
+.ts-bar-bg{height:3px;background:var(--faint);border-radius:2px;}
+.ts-bar-fg{height:100%;border-radius:2px;transition:width .8s ease;}
+
+/* team detail cards */
+.team-detail-title{font-family:'Inconsolata',monospace;font-size:11px;letter-spacing:.25em;color:var(--muted);margin:20px 0 10px;}
+.tc{border:1px solid var(--border);background:var(--card-bg);margin-bottom:10px;overflow:hidden;animation:fadeUp .4s ease forwards;opacity:0;}
+.tc-head{background:var(--text);color:#fff;padding:14px 18px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;}
+.tc-title{font-family:'Oswald',sans-serif;font-size:19px;font-weight:700;}
+.tc-badge{font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:.18em;color:rgba(255,255,255,.38);margin-top:3px;}
+.tc-totals{display:flex;gap:18px;flex-wrap:wrap;}
+.tc-tot-val{font-family:'Oswald',sans-serif;font-size:17px;font-weight:700;color:var(--gold);display:block;}
+.tc-tot-lbl{font-family:'Inconsolata',monospace;font-size:9px;letter-spacing:.1em;color:rgba(255,255,255,.32);}
+.tc-avgs-row{display:grid;grid-template-columns:repeat(3,1fr);background:#f0ece3;border-bottom:1px solid var(--border);}
+.tc-avg-cell{padding:9px 14px;text-align:center;border-right:1px solid var(--border);}
+.tc-avg-cell:last-child{border-right:none;}
+.tc-avg-val{font-family:'Oswald',sans-serif;font-size:16px;font-weight:700;}
+.tc-avg-lbl{font-family:'Inconsolata',monospace;font-size:9px;letter-spacing:.1em;color:var(--muted);margin-top:1px;}
+.tc-member{display:flex;align-items:center;gap:10px;padding:9px 16px;border-bottom:1px solid var(--faint);}
+.tc-member:last-child{border-bottom:none;}
+.tc-m-name{font-family:'Oswald',sans-serif;font-size:14px;font-weight:500;flex:1;}
+.tc-m-stats{font-family:'Inconsolata',monospace;font-size:10px;color:var(--muted);flex:1;text-align:right;}
+.tc-m-score{font-family:'Oswald',sans-serif;font-size:15px;font-weight:700;color:var(--gold);min-width:46px;text-align:right;}
+.tc-m-score-lbl{font-family:'Inconsolata',monospace;font-size:9px;color:var(--muted);margin-left:2px;}
+
+/* ── HOW TO WIN ── */
+.htw-hero{background:var(--text);color:#fff;padding:26px 22px;margin-bottom:14px;}
+.htw-hero-eye{font-family:'Inconsolata',monospace;font-size:11px;letter-spacing:.3em;color:rgba(255,255,255,.38);margin-bottom:5px;}
+.htw-hero-title{font-family:'Oswald',sans-serif;font-size:clamp(26px,5.5vw,44px);font-weight:700;line-height:1.1;margin-bottom:8px;}
 .htw-hero-title span{color:var(--gold);}
-.htw-hero-sub{font-family:'Barlow',sans-serif;font-size:15px;color:rgba(255,255,255,.65);line-height:1.6;max-width:560px;}
-.htw-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;}
-@media(max-width:640px){.htw-cards{grid-template-columns:1fr;}}
-.htw-card{padding:20px;border:2px solid var(--faint);}
-.htw-card-weight{font-family:'Oswald',sans-serif;font-size:42px;font-weight:700;line-height:1;}
-.htw-card-label{font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:.25em;color:var(--muted);margin:4px 0 10px;}
+.htw-hero-sub{font-family:'Barlow',sans-serif;font-size:14px;color:rgba(255,255,255,.6);line-height:1.6;max-width:540px;}
+.htw-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;}
+@media(max-width:600px){.htw-cards{grid-template-columns:1fr;}}
+.htw-card{padding:18px;border:2px solid var(--faint);}
+.htw-card-weight{font-family:'Oswald',sans-serif;font-size:40px;font-weight:700;line-height:1;}
+.htw-card-label{font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:.22em;color:var(--muted);margin:4px 0 8px;}
 .htw-card-tip{font-family:'Barlow',sans-serif;font-size:13px;color:var(--text);line-height:1.55;}
 .htw-card-tip strong{display:block;margin-bottom:3px;}
-.htw-rule{background:#f0ece3;border:1px solid var(--border);padding:20px 24px;margin-bottom:8px;}
-.htw-rule-title{font-family:'Oswald',sans-serif;font-size:18px;font-weight:600;margin-bottom:8px;}
+.htw-rule{background:#f0ece3;border:1px solid var(--border);padding:18px 22px;margin-bottom:8px;}
+.htw-rule-title{font-family:'Oswald',sans-serif;font-size:17px;font-weight:600;margin-bottom:7px;}
 .htw-rule-body{font-family:'Barlow',sans-serif;font-size:14px;color:#444;line-height:1.65;}
 .htw-rule-body strong{color:var(--text);}
-.htw-example{background:var(--text);color:#fff;padding:20px 24px;margin-bottom:16px;}
-.htw-example-title{font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:.25em;color:rgba(255,255,255,.4);margin-bottom:12px;}
-.htw-ex-row{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);padding:10px 0;flex-wrap:wrap;gap:6px;}
+.htw-example{background:var(--text);color:#fff;padding:18px 22px;margin-bottom:14px;}
+.htw-example-title{font-family:'Inconsolata',monospace;font-size:10px;letter-spacing:.22em;color:rgba(255,255,255,.38);margin-bottom:10px;}
+.htw-ex-row{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07);padding:9px 0;flex-wrap:wrap;gap:4px;}
 .htw-ex-row:last-child{border-bottom:none;}
-.htw-ex-name{font-family:'Oswald',sans-serif;font-size:16px;font-weight:500;}
-.htw-ex-stats{font-family:'Inconsolata',monospace;font-size:11px;color:rgba(255,255,255,.5);}
-.htw-ex-score{font-family:'Oswald',sans-serif;font-size:22px;font-weight:700;color:var(--gold);}
-.htw-cta{border:3px solid var(--text);padding:24px;text-align:center;}
-.htw-cta-title{font-family:'Oswald',sans-serif;font-size:clamp(20px,4vw,30px);font-weight:700;margin-bottom:8px;}
+.htw-ex-name{font-family:'Oswald',sans-serif;font-size:15px;font-weight:500;}
+.htw-ex-stats{font-family:'Inconsolata',monospace;font-size:10px;color:rgba(255,255,255,.45);}
+.htw-ex-score{font-family:'Oswald',sans-serif;font-size:21px;font-weight:700;color:var(--gold);}
+.htw-cta{border:3px solid var(--text);padding:22px;text-align:center;}
+.htw-cta-title{font-family:'Oswald',sans-serif;font-size:clamp(18px,4vw,28px);font-weight:700;margin-bottom:7px;}
 .htw-cta-title span{color:var(--gold);}
-.htw-cta-body{font-family:'Barlow',sans-serif;font-size:14px;color:var(--muted);line-height:1.6;}
+.htw-cta-body{font-family:'Barlow',sans-serif;font-size:13px;color:var(--muted);line-height:1.6;}
+
+/* ── FOOTER ── */
+.footer{border-top:1px solid var(--border);margin-top:32px;padding-top:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+.fl{font-family:'Inconsolata',monospace;font-size:11px;color:var(--muted);letter-spacing:.13em;}
+.fr{font-family:'Oswald',sans-serif;font-size:14px;color:var(--muted);letter-spacing:.1em;}
+
+/* ── MOBILE ── */
+@media(max-width:600px){
+  .rep-card-top{grid-template-columns:42px 1fr auto;}
+  .rep-rank{font-size:24px;}
+  .rep-name{font-size:18px;}
+  .rep-score{font-size:28px;}
+  .rep-stats{gap:0;}
+  .rep-stat{min-width:60px;}
+  .stat-val{font-size:14px;}
+  .sk-item{min-width:60px;padding:8px 10px;}
+  .sk-num{font-size:18px;}
+  .ts-card{grid-template-columns:38px 1fr auto;}
+  .ts-rank{font-size:22px;}
+  .ts-score{font-size:22px;}
+  .tc-avgs-row{grid-template-columns:1fr 1fr;}
+  .tc-avg-cell:last-child{grid-column:1/-1;border-top:1px solid var(--border);border-right:none;}
+  .tc-m-stats{font-size:9px;}
+  .tabs{overflow-x:auto;}
+}
 </style>
 </head>
 <body>
 <div class="wrap">
+
 <div class="header">
-  <div class="eyebrow">SDR TEAM PERFORMANCE DASHBOARD</div>
-  <div class="header-row"><h1 id="hMonth"></h1><div class="header-right" id="hMeta"></div></div>
+  <div class="eyebrow">SDR PERFORMANCE DASHBOARD</div>
+  <div class="header-row">
+    <h1 id="hMonth"></h1>
+    <div class="header-right" id="hMeta"></div>
+  </div>
 </div>
+
 <div class="metrics" id="metricCards"></div>
+
 <div class="pace">
   <div class="pace-lbl">MONTHLY TEAM GOAL PACE</div>
-  <div class="pace-row"><div class="pace-title" id="paceTitle"></div><div class="pace-stats" id="paceStats"></div></div>
+  <div class="pace-row">
+    <div class="pace-title" id="paceTitle"></div>
+    <div class="pace-stats" id="paceStats"></div>
+  </div>
   <div class="pbar-bg"><div class="pbar-fg" id="paceFill" style="width:0%"></div></div>
 </div>
+
+<!-- SCORING KEY always visible -->
+<div class="scoring-key" id="scoringKey"></div>
+
 <div class="tabs">
   <button class="tab on" onclick="show('board',this)">🏆 Overall Rank</button>
   <button class="tab" onclick="show('teams',this)">👥 Teams</button>
   <button class="tab" onclick="show('howtowin',this)">🔥 How to Win</button>
 </div>
+
 <div id="board" class="sec on"></div>
 <div id="teams" class="sec"></div>
 <div id="howtowin" class="sec"></div>
-<div class="footer"><div class="fl" id="footerL"></div><div class="fr">WHO'S NEXT?</div></div>
+
+<div class="footer">
+  <div class="fl" id="footerL"></div>
+  <div class="fr">WHO'S NEXT?</div>
+</div>
 </div>
 
 <script>
@@ -181,206 +287,398 @@ var TEAMS = [
   {name:"Team 8", members:["Harvey","Petros Foustanellas","Saray Cortes"]}
 ];
 
+// KPI targets
+var KPI_SETS_DAY = 5;
+var KPI_CLS_WEEK = 4;
+var KPI_REV_MONTH = 100000;
+
 function $(id){return document.getElementById(id);}
-function fmt$(n){return(n||n===0)?'$'+Math.round(n).toLocaleString():'--';}
+function fmt$(n){return (n!=null&&n!=='')?'$'+Math.round(n).toLocaleString():'--';}
 function fmtP(n){return n!=null?n.toFixed(1)+'%':'--';}
-var RC=['var(--r1)','var(--r2)','var(--r3)'];
-function rc(i){return RC[i]||'var(--muted)';}
 function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
+var RC=['var(--r1)','var(--r2)','var(--r3)'];
+function rc(i){return i<RC.length?RC[i]:'var(--muted)';}
+
 function show(id,btn){
   document.querySelectorAll('.sec').forEach(function(s){s.classList.remove('on');});
   document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on');});
-  $(id).classList.add('on');btn.classList.add('on');
+  $(id).classList.add('on'); btn.classList.add('on');
 }
 
-// SCORING
-var allReps=DATA.reps.map(function(r){return Object.assign({},r);});
-var active=allReps.filter(function(r){return r.rev>0||r.cls>0||r.sets>0;});
-var mR=Math.max.apply(null,active.map(function(r){return r.rev;}).concat([1]));
-var mC=Math.max.apply(null,active.map(function(r){return r.cls;}).concat([1]));
-var mS=Math.max.apply(null,active.map(function(r){return r.sets;}).concat([1]));
+// ── SCORING ──
+var allReps = DATA.reps;
+var active = allReps.filter(function(r){return r.rev>0||r.cls>0||r.sets>0;});
+var mR = Math.max.apply(null, active.map(function(r){return r.rev;}).concat([1]));
+var mC = Math.max.apply(null, active.map(function(r){return r.cls;}).concat([1]));
+var mS = Math.max.apply(null, active.map(function(r){return r.sets;}).concat([1]));
 
-var scored=active.map(function(r){
+function calcScore(r){
+  return Math.round((r.rev/mR*100)*.35 + (r.cls/mC*100)*.30 + (r.sets/mS*100)*.35);
+}
+
+var scoredActive = active.map(function(r){
   return {
-    name:r.name,rev:r.rev,cls:r.cls,sets:r.sets,cc:r.cc,
-    score:Math.round((r.rev/mR*100)*.35+(r.cls/mC*100)*.30+(r.sets/mS*100)*.35),
-    rpc:r.cls>0?Math.round(r.rev/r.cls):null,
-    cr:r.sets>0?r.cls/r.sets*100:null
+    name:r.name, rev:r.rev, cls:r.cls, sets:r.sets, cc:r.cc,
+    score: calcScore(r),
+    rpc: r.cls>0 ? Math.round(r.rev/r.cls) : null,
+    cr:  r.sets>0 ? r.cls/r.sets*100 : null,
+    inactive: false
   };
-}).sort(function(a,b){return b.score-a.score||a.name.localeCompare(b.name);});
+}).sort(function(a,b){return b.score-a.score || a.name.localeCompare(b.name);});
 
-// also build a full map including zero-activity reps
-var repMap={};
-scored.forEach(function(r){repMap[r.name]=r;});
-DATA.reps.forEach(function(r){
-  if(!repMap[r.name]) repMap[r.name]={name:r.name,rev:0,cls:0,sets:0,cc:0,score:0,rpc:null,cr:null};
+var inactive = allReps.filter(function(r){return r.rev===0&&r.cls===0&&r.sets===0;});
+var scoredInactive = inactive.map(function(r){
+  return {name:r.name,rev:0,cls:0,sets:0,cc:0,score:0,rpc:null,cr:null,inactive:true};
 });
 
-var totRev=scored.reduce(function(s,r){return s+r.rev;},0);
-var totCls=scored.reduce(function(s,r){return s+r.cls;},0);
-var totSet=scored.reduce(function(s,r){return s+r.sets;},0);
-var pct=totRev/DATA.goal*100;
-var dLeft=DATA.workDaysTotal-DATA.workDay;
-var needed=dLeft>0?Math.ceil((DATA.goal-totRev)/dLeft):0;
+var allScored = scoredActive.concat(scoredInactive);
 
-// HEADER
-var parts=DATA.month.split(' ');
-$('hMonth').innerHTML=parts[0]+' <span>'+parts[1]+'</span>';
-$('hMeta').innerHTML=DATA.updatedAt.toUpperCase()+'<br>WORK DAY '+DATA.workDay+' OF '+DATA.workDaysTotal;
+// Build repMap for team lookups
+var repMap = {};
+allScored.forEach(function(r){repMap[r.name]=r;});
 
-// METRIC CARDS
-var mc=$('metricCards');
-var activeClosers=scored.filter(function(r){return r.rev>0;}).length;
-var avgRevPerRep=activeClosers>0?Math.round(totRev/activeClosers):0;
+var totRev = scoredActive.reduce(function(s,r){return s+r.rev;},0);
+var totCls = scoredActive.reduce(function(s,r){return s+r.cls;},0);
+var totSet = scoredActive.reduce(function(s,r){return s+r.sets;},0);
+var pct = totRev/DATA.goal*100;
+var dLeft = DATA.workDaysTotal - DATA.workDay;
+var needed = dLeft>0 ? Math.ceil((DATA.goal-totRev)/dLeft) : 0;
+
+// KPI pace helpers (based on workDay elapsed)
+var daysElapsed = DATA.workDay;
+var weeksElapsed = daysElapsed / 5;
+function paceStatus(actual, target){
+  var ratio = target>0 ? actual/target : 1;
+  return ratio >= 0.85 ? 'on' : 'behind';
+}
+function kpiSetsTarget(){ return KPI_SETS_DAY * daysElapsed; }
+function kpiClsTarget(){ return KPI_CLS_WEEK * weeksElapsed; }
+function kpiRevTarget(){ return KPI_REV_MONTH * (daysElapsed / DATA.workDaysTotal); }
+
+// ── HEADER ──
+var parts = DATA.month.split(' ');
+$('hMonth').innerHTML = parts[0]+' <span>'+parts[1]+'</span>';
+$('hMeta').innerHTML = DATA.updatedAt.toUpperCase()+'<br>WORK DAY '+DATA.workDay+' OF '+DATA.workDaysTotal;
+
+// ── METRIC CARDS ──
+var activeClosers = scoredActive.filter(function(r){return r.rev>0;}).length;
+var avgRevPerRep = activeClosers>0 ? Math.round(totRev/activeClosers) : 0;
 [['&#x1F4B0;','REVENUE MTD',fmt$(totRev),'linear-gradient(135deg,#7a5808,#c8960a)'],
  ['&#x1F91D;','CLOSES MTD',String(totCls),'linear-gradient(135deg,#8a2010,#c0392b)'],
  ['&#x1F4C5;','SETS MTD',String(totSet),'linear-gradient(135deg,#0a2a5a,#2980b9)'],
  ['&#x1F3AF;','AVG REV / REP',fmt$(avgRevPerRep),'linear-gradient(135deg,#2d0a5a,#7a30b9)']
 ].forEach(function(d){
   var c=el('div','mc');
-  c.innerHTML='<div class="mc-top" style="background:'+d[3]+'"></div><div class="mc-lbl">'+d[0]+' '+d[1]+'</div><div class="mc-val">'+d[2]+'</div>';
-  mc.appendChild(c);
+  c.innerHTML='<div class="mc-top" style="background:'+d[3]+'"></div>'
+    +'<div class="mc-lbl">'+d[0]+' '+d[1]+'</div>'
+    +'<div class="mc-val">'+d[2]+'</div>';
+  $('metricCards').appendChild(c);
 });
 
-// PACE
-$('paceTitle').textContent=fmt$(totRev)+' of '+fmt$(DATA.goal);
-var ps=$('paceStats');
+// ── PACE BAR ──
+$('paceTitle').textContent = fmt$(totRev)+' of '+fmt$(DATA.goal);
 [[pct.toFixed(1)+'%','ATTAINED'],[dLeft,'DAYS LEFT'],[fmt$(needed),'REV/DAY NEEDED']].forEach(function(d){
-  ps.innerHTML+='<div><span class="ps-val">'+d[0]+'</span><span class="ps-lbl">'+d[1]+'</span></div>';
+  $('paceStats').innerHTML += '<div><span class="ps-val">'+d[0]+'</span><span class="ps-lbl">'+d[1]+'</span></div>';
 });
-setTimeout(function(){$('paceFill').style.width=Math.min(pct,100)+'%';},100);
+setTimeout(function(){$('paceFill').style.width=Math.min(pct,100)+'%';},120);
 
-// OVERALL BOARD
-var board=$('board');
-scored.forEach(function(r,i){
-  var pctS=scored[0].score>0?r.score/scored[0].score*100:0;
-  var barC=i===0?'var(--r1)':i===1?'var(--r2)':i===2?'var(--r3)':'var(--text)';
-  var gapTxt=i===0
-    ?'<span style="color:var(--green)">&#9650; LEADING THE BOARD</span>'
-    :'<span style="color:var(--red)">&#9650; '+(scored[i-1].score-r.score)+' pts to #'+i+' &nbsp;|&nbsp; '+fmt$(scored[i-1].rev-r.rev)+' rev gap</span>';
-  var pillHtml=[
-    [fmt$(r.rev),'REV','var(--gold)'],
-    [r.cls+' cls','CLOSES','var(--red)'],
-    [(r.sets||'--')+' sets','SETS','var(--blue)'],
-    [r.rpc?fmt$(r.rpc):'--','REV/CL','#555'],
-    [fmtP(r.cr),'CR','var(--green)']
-  ].map(function(p){
-    return '<div class="pill" style="border-left-color:'+p[2]+'"><span class="pv">'+p[0]+'</span><span class="pl">'+p[1]+'</span></div>';
-  }).join('');
-  var row=el('div','rr');
-  row.style.animationDelay=(i*.04)+'s';
-  row.innerHTML='<div class="rrank" style="color:'+rc(i)+'">'+(i+1)+'</div>'
-    +'<div><div class="rname" style="color:'+rc(i)+'">'+r.name+'</div>'
-    +'<div class="pills">'+pillHtml+'</div>'
-    +'<div class="sbar-bg"><div class="sbar-fg" style="width:'+pctS+'%;background:'+barC+'"></div></div>'
-    +'<div class="rgap">'+gapTxt+'</div></div>'
-    +'<div><div class="rscore" style="color:'+rc(i)+'">'+r.score+'</div><div class="rslbl">SCORE</div></div>';
-  board.appendChild(row);
+// ── SCORING KEY ──
+[['35','REV','var(--gold)'],['30','CLOSES','var(--red)'],['35','SETS','var(--blue)']].forEach(function(d){
+  var item=el('div','sk-item');
+  item.innerHTML='<div class="sk-num" style="color:'+d[2]+'">'+d[0]+'</div>'
+    +'<div class="sk-lbl">PTS<br>'+d[1]+'</div>';
+  $('scoringKey').appendChild(item);
+});
+// Add a label
+var skLabel = el('div','sk-item');
+skLabel.style.cssText='background:transparent;border:1px solid var(--border);padding:10px 12px;display:flex;align-items:center;';
+skLabel.innerHTML='<div style="font-family:\'Barlow\',sans-serif;font-size:12px;color:var(--muted);line-height:1.5;">Score is relative<br>to top performer</div>';
+$('scoringKey').appendChild(skLabel);
+
+// ── ACTION GAP HELPER ──
+// Returns plain-language "what do you need to do to jump to the next rank"
+function actionGap(r, prevRep){
+  if(!prevRep) return null;
+  var ptGap = prevRep.score - r.score;
+  if(ptGap <= 0) return null;
+
+  // Figure out which single action closes the gap most efficiently
+  // Simulate: what if rep added X sets, how many needed?
+  var setsNeededForTie = null;
+  if(mS > 0){
+    // score gain per set = .35 * (1/mS) * 100
+    var gainPerSet = .35 * (100/mS);
+    setsNeededForTie = gainPerSet > 0 ? Math.ceil(ptGap / gainPerSet) : null;
+  }
+  // What if rep added revenue (in $5k chunks)
+  var revNeededForTie = null;
+  if(mR > 0){
+    var gainPerDollar = .35 * (100/mR);
+    revNeededForTie = gainPerDollar > 0 ? Math.ceil(ptGap / gainPerDollar) : null;
+  }
+  // What if rep added a close
+  var closeGain = mC > 0 ? .30 * (100/mC) : 0;
+  var closesNeededForTie = closeGain > 0 ? Math.ceil(ptGap / closeGain) : null;
+
+  // Pick the most actionable suggestion
+  var suggestions = [];
+  if(setsNeededForTie !== null && setsNeededForTie <= 20){
+    suggestions.push(setsNeededForTie+' more set'+(setsNeededForTie!==1?'s':''));
+  }
+  if(closesNeededForTie !== null && closesNeededForTie <= 5){
+    suggestions.push(closesNeededForTie+' more close'+(closesNeededForTie!==1?'s':''));
+  }
+  if(revNeededForTie !== null){
+    suggestions.push(fmt$(revNeededForTie)+' more rev');
+  }
+
+  if(suggestions.length === 0) return ptGap+' pts gap';
+  // Show the top 2 most actionable
+  return 'Jump to #'+(scoredActive.indexOf(prevRep)+1)+': <span>'+suggestions.slice(0,2).join(' or ')+'</span>';
+}
+
+// ── OVERALL BOARD ──
+var board = $('board');
+
+scoredActive.forEach(function(r, i){
+  var card = el('div','rep-card');
+  card.style.animationDelay = (i*.05)+'s';
+
+  var rankColor = rc(i);
+  var barColor = i===0?'var(--r1)':i===1?'var(--r2)':i===2?'var(--r3)':'var(--text)';
+  var pctBar = scoredActive[0].score>0 ? r.score/scoredActive[0].score*100 : 0;
+
+  // Find which team this rep is on
+  var teamName = '';
+  TEAMS.forEach(function(t){
+    if(t.members.indexOf(r.name)!==-1) teamName=t.name;
+  });
+
+  // Gap row
+  var gapHtml = '';
+  if(i===0){
+    gapHtml = '<div class="gap-leading">▲ LEADING THE BOARD</div>';
+  } else {
+    var prev = scoredActive[i-1];
+    var ptGap = prev.score - r.score;
+    var revGap = prev.rev - r.rev;
+    var action = actionGap(r, prev);
+    gapHtml = '<div class="gap-behind">▲ '+ptGap+' pts to #'+i+' &nbsp;·&nbsp; '+fmt$(revGap)+' rev gap</div>';
+    if(action){
+      gapHtml += '<div class="gap-action">'+action+'</div>';
+    }
+  }
+
+  // KPI pace badges
+  var setsPace = paceStatus(r.sets, kpiSetsTarget());
+  var clsPace  = paceStatus(r.cls,  kpiClsTarget());
+  var revPace  = paceStatus(r.rev,  kpiRevTarget());
+  var paceBadge = revPace==='on'
+    ? '<span class="rep-pace pace-on">ON PACE</span>'
+    : '<span class="rep-pace pace-behind">BEHIND PACE</span>';
+
+  card.innerHTML =
+    '<div class="rep-card-top">'
+      +'<div class="rep-rank" style="color:'+rankColor+'">'+(i+1)+'</div>'
+      +'<div>'
+        +'<div class="rep-name" style="color:'+rankColor+'">'+r.name+paceBadge+'</div>'
+        +'<div class="rep-team-tag">'+teamName+'</div>'
+      +'</div>'
+      +'<div class="rep-score-col">'
+        +'<div class="rep-score" style="color:'+rankColor+'">'+r.score+'</div>'
+        +'<div class="rep-score-lbl">SCORE</div>'
+      +'</div>'
+    +'</div>'
+    +'<div class="rep-bar-wrap">'
+      +'<div class="rep-bar-bg"><div class="rep-bar-fg" style="width:'+pctBar+'%;background:'+barColor+'"></div></div>'
+    +'</div>'
+    +'<div class="rep-stats">'
+      +'<div class="rep-stat"><div class="stat-val" style="color:var(--gold)">'+fmt$(r.rev)+'</div><div class="stat-lbl">REVENUE</div></div>'
+      +'<div class="rep-stat"><div class="stat-val" style="color:var(--red)">'+r.cls+'</div><div class="stat-lbl">CLOSES</div></div>'
+      +'<div class="rep-stat"><div class="stat-val" style="color:var(--blue)">'+r.sets+'</div><div class="stat-lbl">SETS</div></div>'
+      +'<div class="rep-stat"><div class="stat-val">'+( r.rpc?fmt$(r.rpc):'--')+'</div><div class="stat-lbl">REV/CLOSE</div></div>'
+      +'<div class="rep-stat"><div class="stat-val">'+fmtP(r.cr)+'</div><div class="stat-lbl">CLOSE RATE</div></div>'
+    +'</div>'
+    +'<div class="rep-gap">'+gapHtml+'</div>';
+
+  board.appendChild(card);
 });
 
-// TEAMS TAB
+// Inactive reps
+if(scoredInactive.length > 0){
+  var inactiveHeader = el('div','');
+  inactiveHeader.style.cssText='font-family:\'Inconsolata\',monospace;font-size:11px;letter-spacing:.22em;color:var(--muted);margin:20px 0 8px;';
+  inactiveHeader.textContent = 'NOT YET ON THE BOARD';
+  board.appendChild(inactiveHeader);
+
+  scoredInactive.forEach(function(r, i){
+    var teamName = '';
+    TEAMS.forEach(function(t){if(t.members.indexOf(r.name)!==-1) teamName=t.name;});
+
+    var card = el('div','rep-card inactive');
+    card.style.animationDelay = ((scoredActive.length+i)*.05)+'s';
+    card.innerHTML =
+      '<div class="rep-card-top">'
+        +'<div class="rep-rank" style="color:var(--muted)">—</div>'
+        +'<div>'
+          +'<div class="rep-name" style="color:var(--muted)">'+r.name+'</div>'
+          +'<div class="rep-team-tag">'+teamName+'</div>'
+        +'</div>'
+        +'<div class="rep-score-col">'
+          +'<div class="rep-score" style="color:var(--muted)">0</div>'
+          +'<div class="rep-score-lbl">SCORE</div>'
+        +'</div>'
+      +'</div>'
+      +'<div class="rep-inactive-msg">No activity posted yet this month.'
+        +'<div class="rep-inactive-action">Post one set today and get on the board.</div>'
+      +'</div>';
+    board.appendChild(card);
+  });
+}
+
+// ── TEAMS TAB ──
 (function(){
-  var sec=$('teams');
+  var sec = $('teams');
 
-  var teams=TEAMS.map(function(t){
-    var mems=t.members.map(function(n){return repMap[n]||{name:n,rev:0,cls:0,sets:0,score:0};});
-    var n=mems.length;
-    var tRev=mems.reduce(function(s,r){return s+r.rev;},0);
-    var tCls=mems.reduce(function(s,r){return s+r.cls;},0);
-    var tSets=mems.reduce(function(s,r){return s+r.sets;},0);
-    var tScore=mems.reduce(function(s,r){return s+r.score;},0);
+  var teams = TEAMS.map(function(t){
+    var mems = t.members.map(function(n){return repMap[n]||{name:n,rev:0,cls:0,sets:0,score:0,inactive:true};});
+    var n = mems.length;
+    var tRev   = mems.reduce(function(s,r){return s+r.rev;},0);
+    var tCls   = mems.reduce(function(s,r){return s+r.cls;},0);
+    var tSets  = mems.reduce(function(s,r){return s+r.sets;},0);
+    var tScore = mems.reduce(function(s,r){return s+r.score;},0);
     return {
       name:t.name, members:mems, n:n,
       totRev:tRev, totCls:tCls, totSets:tSets,
-      avgScore:n>0?Math.round(tScore/n*10)/10:0,
-      avgRev:n>0?Math.round(tRev/n):0,
-      avgCls:n>0?Math.round(tCls/n*10)/10:0,
-      avgSets:n>0?Math.round(tSets/n*10)/10:0
+      avgScore: n>0 ? Math.round(tScore/n*10)/10 : 0,
+      avgRev:   n>0 ? Math.round(tRev/n) : 0,
+      avgCls:   n>0 ? Math.round(tCls/n*10)/10 : 0,
+      avgSets:  n>0 ? Math.round(tSets/n*10)/10 : 0
     };
   }).sort(function(a,b){return b.avgScore-a.avgScore||a.name.localeCompare(b.name);});
 
-  // Standings table
-  var hdr=el('div','ts-header');
-  hdr.innerHTML='<div>#</div><div>TEAM</div><div class="hm" style="text-align:right">AVG REV/REP</div><div class="hm" style="text-align:right">AVG SETS</div><div style="text-align:right">AVG CLS</div><div style="text-align:right">AVG SCORE</div>';
-  sec.appendChild(hdr);
+  var maxTeamScore = teams[0].avgScore || 1;
+
+  // Standings
+  var standTitle = el('div','ts-title');
+  standTitle.textContent = 'TEAM STANDINGS — AVG SCORE PER REP';
+  sec.appendChild(standTitle);
 
   teams.forEach(function(t,i){
-    var row=el('div','ts-row');
-    row.style.animationDelay=(i*.05)+'s';
-    var c=rc(i);
-    row.innerHTML='<div class="ts-rank" style="color:'+c+'">'+(i+1)+'</div>'
-      +'<div><div class="ts-name" style="color:'+c+'">'+t.name+'</div><div class="ts-reps">'+t.n+' rep'+(t.n!==1?'s':'')+'</div></div>'
-      +'<div class="ts-val hm">'+fmt$(t.avgRev)+'</div>'
-      +'<div class="ts-val hm">'+t.avgSets+'</div>'
-      +'<div class="ts-val">'+t.avgCls+'</div>'
-      +'<div class="ts-score" style="color:'+c+'">'+t.avgScore+'</div>';
-    sec.appendChild(row);
+    var c = rc(i);
+    var pctBar = maxTeamScore>0 ? t.avgScore/maxTeamScore*100 : 0;
+    var card = el('div','ts-card');
+    card.style.animationDelay = (i*.06)+'s';
+    card.innerHTML =
+      '<div class="ts-rank" style="color:'+c+'">'+(i+1)+'</div>'
+      +'<div>'
+        +'<div class="ts-name" style="color:'+c+'">'+t.name+'</div>'
+        +'<div class="ts-meta">'+t.n+' rep'+(t.n!==1?'s':'')+'</div>'
+        +'<div class="ts-avgs">'
+          +'<div class="ts-avg"><div class="ts-avg-val">'+fmt$(t.avgRev)+'</div><div class="ts-avg-lbl">AVG REV</div></div>'
+          +'<div class="ts-avg"><div class="ts-avg-val">'+t.avgCls+'</div><div class="ts-avg-lbl">AVG CLS</div></div>'
+          +'<div class="ts-avg"><div class="ts-avg-val">'+t.avgSets+'</div><div class="ts-avg-lbl">AVG SETS</div></div>'
+        +'</div>'
+      +'</div>'
+      +'<div class="ts-score-wrap">'
+        +'<div class="ts-score" style="color:'+c+'">'+t.avgScore+'</div>'
+        +'<div class="ts-score-lbl">AVG SCORE</div>'
+      +'</div>'
+      +'<div class="ts-bar-row">'
+        +'<div class="ts-bar-bg"><div class="ts-bar-fg" style="width:0%;background:'+c+'" data-w="'+pctBar+'"></div></div>'
+      +'</div>';
+    sec.appendChild(card);
   });
 
-  // Team cards
-  var lbl=el('div','team-lbl');lbl.textContent='TEAM BREAKDOWN';sec.appendChild(lbl);
-  var cards=el('div','team-cards');
+  // Animate team bars
+  setTimeout(function(){
+    document.querySelectorAll('.ts-bar-fg').forEach(function(b){
+      b.style.width = b.getAttribute('data-w')+'%';
+      b.style.transition = 'width .8s ease';
+    });
+  },150);
+
+  // Team detail cards
+  var detailTitle = el('div','team-detail-title');
+  detailTitle.textContent = 'TEAM BREAKDOWN — TOTALS & MEMBER DETAIL';
+  sec.appendChild(detailTitle);
 
   teams.forEach(function(t,i){
-    var c=rc(i);
-    var card=el('div','tc');
-    card.style.animationDelay=(i*.06)+'s';
-    var mems=t.members.slice().sort(function(a,b){return b.score-a.score;});
-    var memberHtml=mems.map(function(r){
+    var c = rc(i);
+    var card = el('div','tc');
+    card.style.animationDelay = (i*.07)+'s';
+    var mems = t.members.slice().sort(function(a,b){return b.score-a.score;});
+
+    var memberHtml = mems.map(function(r){
       return '<div class="tc-member">'
         +'<div class="tc-m-name">'+r.name+'</div>'
         +'<div class="tc-m-stats">'+fmt$(r.rev)+' &nbsp;·&nbsp; '+r.cls+' cls &nbsp;·&nbsp; '+r.sets+' sets</div>'
-        +'<div class="tc-m-score">'+r.score+'<span>pts</span></div>'
+        +'<div class="tc-m-score">'+r.score+'<span class="tc-m-score-lbl">pts</span></div>'
       +'</div>';
     }).join('');
 
-    card.innerHTML=
+    card.innerHTML =
       '<div class="tc-head">'
-        +'<div class="tc-head-left"><div class="tc-title" style="color:'+c+'">#'+(i+1)+' &nbsp;'+t.name+'</div>'
-        +'<div class="tc-badge">'+t.n+' REP'+(t.n!==1?'S':'')+' &nbsp;·&nbsp; AVG SCORE '+t.avgScore+'</div></div>'
+        +'<div>'
+          +'<div class="tc-title" style="color:'+c+'">#'+(i+1)+' &nbsp;'+t.name+'</div>'
+          +'<div class="tc-badge">'+t.n+' REP'+(t.n!==1?'S':'')+' &nbsp;·&nbsp; AVG SCORE '+t.avgScore+'</div>'
+        +'</div>'
         +'<div class="tc-totals">'
-          +'<div class="tc-tot"><span class="tc-tot-val">'+fmt$(t.totRev)+'</span><span class="tc-tot-lbl">TOTAL REV</span></div>'
-          +'<div class="tc-tot"><span class="tc-tot-val">'+t.totCls+'</span><span class="tc-tot-lbl">TOTAL CLS</span></div>'
-          +'<div class="tc-tot"><span class="tc-tot-val">'+t.totSets+'</span><span class="tc-tot-lbl">TOTAL SETS</span></div>'
+          +'<div><span class="tc-tot-val">'+fmt$(t.totRev)+'</span><span class="tc-tot-lbl">TOTAL REV</span></div>'
+          +'<div><span class="tc-tot-val">'+t.totCls+'</span><span class="tc-tot-lbl">TOTAL CLS</span></div>'
+          +'<div><span class="tc-tot-val">'+t.totSets+'</span><span class="tc-tot-lbl">TOTAL SETS</span></div>'
         +'</div>'
       +'</div>'
-      +'<div class="tc-avgs">'
-        +'<div class="tc-avg"><div class="tc-avg-val">'+fmt$(t.avgRev)+'</div><div class="tc-avg-lbl">AVG REV / REP</div></div>'
-        +'<div class="tc-avg"><div class="tc-avg-val">'+t.avgCls+'</div><div class="tc-avg-lbl">AVG CLOSES / REP</div></div>'
-        +'<div class="tc-avg"><div class="tc-avg-val">'+t.avgSets+'</div><div class="tc-avg-lbl">AVG SETS / REP</div></div>'
+      +'<div class="tc-avgs-row">'
+        +'<div class="tc-avg-cell"><div class="tc-avg-val">'+fmt$(t.avgRev)+'</div><div class="tc-avg-lbl">AVG REV / REP</div></div>'
+        +'<div class="tc-avg-cell"><div class="tc-avg-val">'+t.avgCls+'</div><div class="tc-avg-lbl">AVG CLOSES / REP</div></div>'
+        +'<div class="tc-avg-cell"><div class="tc-avg-val">'+t.avgSets+'</div><div class="tc-avg-lbl">AVG SETS / REP</div></div>'
       +'</div>'
       +'<div>'+memberHtml+'</div>';
-    cards.appendChild(card);
+
+    sec.appendChild(card);
   });
-  sec.appendChild(cards);
 })();
 
-// HOW TO WIN
-$('howtowin').innerHTML=
+// ── HOW TO WIN ──
+$('howtowin').innerHTML =
 '<div class="htw-hero">'
   +'<div class="htw-hero-eye">THE PLAYBOOK</div>'
   +'<div class="htw-hero-title">YOU DON\'T CLIMB THE BOARD<br>BY <span>ACCIDENT.</span></div>'
   +'<div class="htw-hero-sub">Every number on this leaderboard is earned. Here\'s exactly how your score is built — and exactly how to blow past the person above you.</div>'
 +'</div>'
-+'<div class="htw-cards">'
-  +'<div class="htw-card" style="border-color:var(--gold)"><div class="htw-card-weight" style="color:var(--gold)">35</div><div class="htw-card-label">POINTS — REVENUE</div><div class="htw-card-tip"><strong>💰 The output that matters.</strong>Revenue closes the loop. A big deal can launch you up the board in a single day. But it\'s equal weight with Sets — so you can\'t coast on one big close. Earn it end to end.</div></div>'
-  +'<div class="htw-card" style="border-color:var(--red)"><div class="htw-card-weight" style="color:var(--red)">30</div><div class="htw-card-label">POINTS — CLOSES</div><div class="htw-card-tip"><strong>🤝 Volume wins over time.</strong>Don\'t sleep on closes just because the deal is smaller. Every close stacks your score and builds momentum. Two closes beats one close — every time. Stack them up.</div></div>'
-  +'<div class="htw-card" style="border-color:var(--blue)"><div class="htw-card-weight" style="color:var(--blue)">35</div><div class="htw-card-label">POINTS — SETS</div><div class="htw-card-tip"><strong>📅 Equal to revenue. No excuses.</strong>Sets are now worth as much as revenue. Fill the pipeline every single day. Reps with 25+ sets are putting serious pressure on the board — even before a close. Post every one.</div></div>'
-+'</div>'
-+'<div class="htw-rule"><div class="htw-rule-title">📐 How the Score Actually Works</div><div class="htw-rule-body">Your score is <strong>relative to the top performer</strong> in each category — not a fixed number. If the top revenue earner has $63K and you have $31K, you score proportionally on revenue. Same math applies to closes and sets.<br><br>This means <strong>the board shifts every single day.</strong> Someone closes a deal tonight and they jump you. You post sets all week and you creep up. Nothing is locked in until the month ends.</div></div>'
-+'<div class="htw-example"><div class="htw-example-title">🔬 SCORE BREAKDOWN — LIVE EXAMPLES (TODAY\'S DATA)</div>'
-+scored.slice(0,4).map(function(r){
-  return '<div class="htw-ex-row"><div class="htw-ex-name">'+r.name+'</div><div class="htw-ex-stats">'+fmt$(r.rev)+' &nbsp;·&nbsp; '+r.cls+' cls &nbsp;·&nbsp; '+r.sets+' sets</div><div class="htw-ex-score">'+r.score+' pts</div></div>';
-}).join('')+'</div>'
-+'<div class="htw-rule"><div class="htw-rule-title">⚡ The Fastest Ways to Move Up Right Now</div><div class="htw-rule-body">'
-  +'<strong>1. Close something today.</strong> Revenue and Sets are now equal at 35 points each. A close moves BOTH — it adds revenue AND proves you can convert. Double impact.<br><br>'
-  +'<strong>2. Post every set, every day.</strong> Sets are worth as much as revenue — 35% of your score. Reps stacking 25+ sets are climbing the board whether they\'ve closed or not. Go fill that pipeline.<br><br>'
-  +'<strong>3. Know your gap.</strong> Look at the Overall Rank tab. It shows you exactly how many points and how much revenue separates you from the person above you. That\'s your target.<br><br>'
-  +'<strong>4. Rev/Close matters.</strong> A rep with 2 big closes can outscore a rep with 5 small ones. Quality and quantity both count.'
-+'</div></div>'
-+'<div class="htw-cta"><div class="htw-cta-title">THE BOARD RESETS IN <span>'+(DATA.workDaysTotal-DATA.workDay)+' WORK DAYS.</span></div><div class="htw-cta-body">Every single person on this team has time to move. The reps who finish strong aren\'t the ones who waited — they\'re the ones who decided. What are you doing today?</div></div>';
 
-$('footerL').textContent='UPDATED DAILY - SDR TEAM - '+DATA.month.toUpperCase();
++'<div class="htw-cards">'
+  +'<div class="htw-card" style="border-color:var(--gold)"><div class="htw-card-weight" style="color:var(--gold)">35</div><div class="htw-card-label">POINTS — REVENUE</div><div class="htw-card-tip"><strong>💰 The output that matters.</strong>Revenue closes the loop. A big deal launches you up the board in a single day. But it\'s equal weight with Sets — coast on one big close and someone who\'s grinding sets will catch you.</div></div>'
+  +'<div class="htw-card" style="border-color:var(--red)"><div class="htw-card-weight" style="color:var(--red)">30</div><div class="htw-card-label">POINTS — CLOSES</div><div class="htw-card-tip"><strong>🤝 Volume wins over time.</strong>Don\'t sleep on closes just because the deal is smaller. Every close stacks your score and builds momentum. Two closes beats one close — every time.</div></div>'
+  +'<div class="htw-card" style="border-color:var(--blue)"><div class="htw-card-weight" style="color:var(--blue)">35</div><div class="htw-card-label">POINTS — SETS</div><div class="htw-card-tip"><strong>📅 Equal to revenue. No excuses.</strong>Sets are worth as much as revenue. Fill the pipeline every single day. Reps with 25+ sets are climbing the board whether they\'ve closed or not. Post every one.</div></div>'
++'</div>'
+
++'<div class="htw-rule"><div class="htw-rule-title">📐 How the Score Actually Works</div><div class="htw-rule-body">'
+  +'Your score is <strong>relative to the top performer</strong> in each category. If the #1 revenue rep has $63K and you have $31K, you score half their revenue points. Same math for closes and sets.<br><br>'
+  +'This means <strong>the board shifts every day.</strong> Someone closes tonight — they jump you. You post five sets tomorrow — you creep up. Nothing is locked until the month ends.'
++'</div></div>'
+
++'<div class="htw-example"><div class="htw-example-title">🔬 LIVE SCORE BREAKDOWN — TODAY\'S DATA</div>'
++scoredActive.slice(0,4).map(function(r){
+  return '<div class="htw-ex-row">'
+    +'<div class="htw-ex-name">'+r.name+'</div>'
+    +'<div class="htw-ex-stats">'+fmt$(r.rev)+' &nbsp;·&nbsp; '+r.cls+' cls &nbsp;·&nbsp; '+r.sets+' sets</div>'
+    +'<div class="htw-ex-score">'+r.score+' pts</div>'
+  +'</div>';
+}).join('')+'</div>'
+
++'<div class="htw-rule"><div class="htw-rule-title">⚡ The Fastest Ways to Move Up Right Now</div><div class="htw-rule-body">'
+  +'<strong>1. Check your action gap.</strong> Every rep card shows exactly what you need — sets, closes, or revenue — to jump to the next rank. That\'s your target for today.<br><br>'
+  +'<strong>2. A close moves two levers at once.</strong> Revenue AND closes both go up. One close is the most efficient score move on the board.<br><br>'
+  +'<strong>3. Sets are free points.</strong> They cost nothing but time. Reps not posting sets are leaving 35% of their score on the table every single day.<br><br>'
+  +'<strong>4. Your pace badge doesn\'t lie.</strong> ON PACE means you\'re on track for your personal KPI targets. BEHIND PACE means you need to step it up — today, not tomorrow.'
++'</div></div>'
+
++'<div class="htw-cta"><div class="htw-cta-title">THE BOARD RESETS IN <span>'+(DATA.workDaysTotal-DATA.workDay)+' WORK DAYS.</span></div>'
++'<div class="htw-cta-body">Everyone on this team still has time to move. The reps who finish strong aren\'t the ones who waited. They decided. What are you doing today?</div></div>';
+
+$('footerL').textContent = 'UPDATED DAILY — SDR TEAM — '+DATA.month.toUpperCase();
 </script>
 </body>
 </html>
