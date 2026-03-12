@@ -117,27 +117,28 @@ h1 span{color:var(--gold);}
 </div>
 <script type="text/javascript">
 var DATA = {
-  month:"March 2026", workDay:9, workDaysTotal:21, goal:1000000,
-  updatedAt:"Wed Mar 11, 2026",
+  month:"March 2026", workDay:10, workDaysTotal:21, goal:1000000,
+  updatedAt:"Thu Mar 12, 2026",
   reps:[
-    {name:"Gloria",              rev:55000, cls:4,  sets:31, cc:25000},
-    {name:"Brent Jackman",       rev:31000, cls:2,  sets:5,  cc:0},
+    {name:"Gloria",              rev:63000, cls:5,  sets:34, cc:25000},
+    {name:"Kenny",               rev:53500, cls:5,  sets:33, cc:15000},
+    {name:"Brent Jackman",       rev:31000, cls:2,  sets:6,  cc:0},
     {name:"Daniel Jordan",       rev:27166, cls:2,  sets:7,  cc:10500},
-    {name:"Kenny",               rev:45500, cls:4,  sets:28, cc:15000},
-    {name:"Caroline",            rev:18400, cls:2,  sets:12, cc:0},
-    {name:"Shivang Kapoor",      rev:16400, cls:2,  sets:14, cc:16400},
-    {name:"Petros Foustanellas", rev:13200, cls:2,  sets:2,  cc:0},
-    {name:"Suraj Bali",          rev:11500, cls:3,  sets:9,  cc:11500},
-    {name:"Ben",                 rev:10000, cls:1,  sets:9,  cc:0},
-    {name:"Samuel Michalcin",    rev:10000, cls:1,  sets:8,  cc:0},
-    {name:"Jonathan Rolling",    rev:8385,  cls:1,  sets:10, cc:8385},
-    {name:"Jose Bernal",         rev:9000,  cls:4,  sets:6,  cc:5000},
-    {name:"Saray Cortes",        rev:6000,  cls:1,  sets:12, cc:1980},
+    {name:"Caroline",            rev:18400, cls:2,  sets:13, cc:0},
+    {name:"Shivang Kapoor",      rev:16400, cls:2,  sets:16, cc:16400},
+    {name:"Suraj Bali",          rev:15000, cls:4,  sets:9,  cc:11500},
+    {name:"Petros Foustanellas", rev:13200, cls:2,  sets:4,  cc:0},
+    {name:"Ben",                 rev:10000, cls:1,  sets:12, cc:0},
+    {name:"Samuel Michalcin",    rev:10000, cls:1,  sets:10, cc:0},
+    {name:"Jose Bernal",         rev:9000,  cls:4,  sets:7,  cc:5000},
+    {name:"Jonathan Rolling",    rev:8385,  cls:1,  sets:13, cc:8385},
+    {name:"Emery Sage",          rev:6200,  cls:1,  sets:25, cc:6200},
+    {name:"Saray Cortes",        rev:6000,  cls:1,  sets:13, cc:1980},
     {name:"Harvey",              rev:6000,  cls:1,  sets:6,  cc:1980},
-    {name:"Emery Sage",          rev:0,     cls:0,  sets:20, cc:0},
-    {name:"TJ Miller",           rev:0,     cls:0,  sets:10, cc:0},
-    {name:"Andy Perez",          rev:0,     cls:0,  sets:11, cc:0},
-    {name:"Habib Fazli",         rev:0,     cls:0,  sets:6,  cc:0}
+    {name:"Andy Perez",          rev:0,     cls:0,  sets:13, cc:0},
+    {name:"TJ Miller",           rev:0,     cls:0,  sets:12, cc:0},
+    {name:"Habib Fazli",         rev:0,     cls:0,  sets:6,  cc:0},
+    {name:"Dante N",             rev:0,     cls:0,  sets:3,  cc:0}
   ]
 };
 
@@ -158,7 +159,7 @@ var mC=Math.max.apply(null,active.map(function(r){return r.cls;}).concat([1]));
 var mS=Math.max.apply(null,active.map(function(r){return r.sets;}).concat([1]));
 var scored=active.map(function(r){
   return {name:r.name,rev:r.rev,cls:r.cls,sets:r.sets,cc:r.cc,
-    score:Math.round((r.rev/mR*100)*.5+(r.cls/mC*100)*.3+(r.sets/mS*100)*.2),
+    score:Math.round((r.rev/mR*100)*.35+(r.cls/mC*100)*.30+(r.sets/mS*100)*.35),
     rpc:r.cls>0?Math.round(r.rev/r.cls):null,
     cr:r.sets>0?r.cls/r.sets*100:null};
 }).sort(function(a,b){return b.score-a.score||a.name.localeCompare(b.name);});
@@ -261,9 +262,9 @@ $('howtowin').innerHTML=
 
 +'<div class="htw-cards">'
   +'<div class="htw-card" style="border-color:var(--gold)">'
-    +'<div class="htw-card-weight" style="color:var(--gold)">50</div>'
+    +'<div class="htw-card-weight" style="color:var(--gold)">35</div>'
     +'<div class="htw-card-label">POINTS — REVENUE</div>'
-    +'<div class="htw-card-tip"><strong>💰 The biggest lever you have.</strong>Revenue is king. One $10K close does more for your rank than a perfect week of sets. If you\'re not closing, you\'re handing the board to someone else. Find the money. Close it.</div>'
+    +'<div class="htw-card-tip"><strong>💰 The output that matters.</strong>Revenue closes the loop. A big deal can launch you up the board in a single day. But it\'s now equal weight with Sets — so you can\'t coast on one big close. You have to earn it end to end.</div>'
   +'</div>'
   +'<div class="htw-card" style="border-color:var(--red)">'
     +'<div class="htw-card-weight" style="color:var(--red)">30</div>'
@@ -271,9 +272,9 @@ $('howtowin').innerHTML=
     +'<div class="htw-card-tip"><strong>🤝 Volume wins over time.</strong>Don\'t sleep on closes just because the deal is smaller. Every close stacks your score and builds momentum. Two closes beats one close — every time. Stack them up.</div>'
   +'</div>'
   +'<div class="htw-card" style="border-color:var(--blue)">'
-    +'<div class="htw-card-weight" style="color:var(--blue)">20</div>'
+    +'<div class="htw-card-weight" style="color:var(--blue)">35</div>'
     +'<div class="htw-card-label">POINTS — SETS</div>'
-    +'<div class="htw-card-tip"><strong>📅 Your engine. Don\'t let it stall.</strong>Sets are your daily proof of work. They keep you on the board, feed the pipeline, and separate the reps who show up from the ones who disappear. Post every single one.</div>'
+    +'<div class="htw-card-tip"><strong>📅 Equal to revenue. No excuses.</strong>Sets are now worth as much as revenue. Fill the pipeline every single day. Reps with 25+ sets are putting serious pressure on the board — even before a close. Post every one.</div>'
   +'</div>'
 +'</div>'
 
@@ -303,8 +304,8 @@ $('howtowin').innerHTML=
 +'<div class="htw-rule">'
   +'<div class="htw-rule-title">⚡ The Fastest Ways to Move Up Right Now</div>'
   +'<div class="htw-rule-body">'
-    +'<strong>1. Close something today.</strong> Even a small deal moves your revenue score 50 points of weight. Nothing else comes close.<br><br>'
-    +'<strong>2. Post every set, every day.</strong> Sets are 20% of your score and easy to stack. Reps who go quiet on sets fall off the board fast.<br><br>'
+    +'<strong>1. Close something today.</strong> Revenue and Sets are now equal at 35 points each. A close moves BOTH — it adds revenue AND proves you can convert. Double impact.<br><br>'
+    +'<strong>2. Post every set, every day.</strong> Sets are worth as much as revenue now — 35% of your score. Reps stacking 25+ sets are climbing the board whether they\'ve closed or not. Go fill that pipeline.<br><br>'
     +'<strong>3. Know your gap.</strong> Look at the Overall Rank tab. It shows you exactly how many points and how much revenue separates you from the person above you. That\'s your target.<br><br>'
     +'<strong>4. Rev/Close matters.</strong> A rep with 2 big closes can outscore a rep with 5 small ones. Quality and quantity both count.'
   +'</div>'
